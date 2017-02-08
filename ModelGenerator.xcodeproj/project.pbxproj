@@ -14,6 +14,7 @@
 		1F66486E1D5D9D0500307AAB /* labels_generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F66486A1D5D9D0500307AAB /* labels_generator.swift */; };
 		1F66486F1D5D9D0500307AAB /* languages_generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F66486B1D5D9D0500307AAB /* languages_generator.swift */; };
 		C9583BD71E48A3C60098BB27 /* service_request_alerts_generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9583BD61E48A3C60098BB27 /* service_request_alerts_generator.swift */; };
+		C9583BF11E4B28300098BB27 /* configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9583BF01E4B28300098BB27 /* configuration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +38,7 @@
 		1F66486A1D5D9D0500307AAB /* labels_generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = labels_generator.swift; sourceTree = "<group>"; };
 		1F66486B1D5D9D0500307AAB /* languages_generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = languages_generator.swift; sourceTree = "<group>"; };
 		C9583BD61E48A3C60098BB27 /* service_request_alerts_generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = service_request_alerts_generator.swift; sourceTree = "<group>"; };
+		C9583BF01E4B28300098BB27 /* configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = configuration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 				1F66485D1D5D978700307AAB /* main.swift */,
 				C9583BD61E48A3C60098BB27 /* service_request_alerts_generator.swift */,
 				1F6648641D5D9C0300307AAB /* shared.swift */,
+				C9583BF01E4B28300098BB27 /* configuration.swift */,
 			);
 			path = ModelGenerator;
 			sourceTree = "<group>";
@@ -108,7 +111,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0800;
-				ORGANIZATIONNAME = PSZOT;
+				ORGANIZATIONNAME = "PGS Software S.A.";
 				TargetAttributes = {
 					1F6648591D5D978700307AAB = {
 						CreatedOnToolsVersion = 7.3;
@@ -144,6 +147,7 @@
 				1F66486C1D5D9D0500307AAB /* countries_generator.swift in Sources */,
 				1F66486F1D5D9D0500307AAB /* languages_generator.swift in Sources */,
 				1F66486D1D5D9D0500307AAB /* keyboards_generator.swift in Sources */,
+				C9583BF11E4B28300098BB27 /* configuration.swift in Sources */,
 				1F66485E1D5D978700307AAB /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,6 +249,7 @@
 					"$(inherited)",
 					"PROJECT_DIR=${PROJECT_DIR}",
 				);
+				INFOPLIST_FILE = "$(SRCROOT)/ModelGenerator/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -253,6 +258,7 @@
 		1F6648631D5D978700307AAB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				INFOPLIST_FILE = "$(SRCROOT)/ModelGenerator/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

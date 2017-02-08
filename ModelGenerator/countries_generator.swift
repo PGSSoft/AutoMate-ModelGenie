@@ -11,7 +11,7 @@ func generateCountries() {
         preconditionFailure("Couldn't initialize expression with given pattern")
     }
 
-    let simulatorCountriesPath = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/PrivateFrameworks/AppSupport.framework/English.lproj/Localizable_Countries.strings"
+    let simulatorCountriesPath = Configuration.developerDirectory + "/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/PrivateFrameworks/AppSupport.framework/English.lproj/Localizable_Countries.strings"
 
     guard let countriesDictionary = NSDictionary(contentsOfFile: simulatorCountriesPath) as? [String: String] else {
         preconditionFailure("Couldn't load countries from Simulator")

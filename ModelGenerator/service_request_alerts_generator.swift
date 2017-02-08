@@ -10,7 +10,7 @@ import Foundation
 
 func generateServiceRequestAlerts() {
     let serviceAlertsConfigurationFileName = "Localizable.strings"
-    let serviceAlertsPath = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/PrivateFrameworks/TCC.framework"
+    let serviceAlertsPath = Configuration.developerDirectory + "/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/PrivateFrameworks/TCC.framework"
 
     typealias ServiceAlertCollection = Set<String>
     typealias ServiceAlertsConfiguration = [String: ServiceAlertCollection]

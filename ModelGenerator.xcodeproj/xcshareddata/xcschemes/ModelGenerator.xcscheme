@@ -61,10 +61,20 @@
             ReferencedContainer = "container:ModelGenerator.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            isEnabled = "NO">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "SRCROOT"
             value = "$(SRCROOT)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "DEVELOPER_DIR"
+            value = "$(DEVELOPER_DIR)"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>

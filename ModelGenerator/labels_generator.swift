@@ -37,7 +37,7 @@ func generateLabels() {
     // uncomment to check available strings
     // print(readStrings(sdkPath + "/System/Library/Frameworks/CoreLocation.framework/English.lproj/locationd.strings"))
 
-    let sdkPath = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk"
+    let sdkPath = Configuration.developerDirectory + "/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk"
     let coreLocation = sdkPath + "/System/Library/Frameworks/CoreLocation.framework/"
 
     write(toFile: "SystemAlertLabel") { (writer) in

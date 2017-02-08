@@ -10,7 +10,7 @@ func getKeyboards() -> [KeyboardData] {
 
     let enUSLocale = NSLocale(localeIdentifier: "en_US")
 
-    let simulatorKeyboardsPath = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/TextInput/"
+    let simulatorKeyboardsPath = Configuration.developerDirectory + "/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/TextInput/"
 
     guard let content = try? fileManager.contentsOfDirectory(atPath: simulatorKeyboardsPath) else {
         preconditionFailure("Couldn't find directory")
