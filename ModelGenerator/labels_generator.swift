@@ -1,14 +1,6 @@
 import Foundation
 
 func generateLabels() {
-    func readStrings(fromPath path: String) -> [String: String] {
-        guard let plist = NSDictionary(contentsOfFile: path) as? [String: String] else {
-            preconditionFailure("Couldn't load countries from Simulator")
-        }
-
-        return plist
-    }
-
     func findVariants(inDirectory directory: String, fileName: String, key: String) -> [String] {
         guard let enumerator = FileManager().enumerator(atPath: directory) else {
             fatalError("Failed to enumerate directory.")

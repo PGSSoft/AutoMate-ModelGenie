@@ -35,6 +35,14 @@ func write(toFile name: String, block: (_ writer: Writer) -> ()) {
     writer.write(to: sourceDirectory() + "/" + outputDirectory + "/\(name).swift")
 }
 
+func readStrings(fromPath path: String) -> [String: String] {
+    guard let plist = NSDictionary(contentsOfFile: path) as? [String: String] else {
+        preconditionFailure("Couldn't load countries from Simulator")
+    }
+
+    return plist
+}
+
 /// Helper for generating source code.
 class Writer: CustomDebugStringConvertible {
     private let data = NSMutableData()
