@@ -1,3 +1,4 @@
+// swiftlint:disable variable_name trailing_comma
 /// Represents possible system service messages and label values on buttons.
 
 import XCTest
@@ -139,12 +140,11 @@ public struct SpeechRecognitionAlert: SystemAlert, SystemAlertAllow, SystemAlert
     public var alert: XCUIElement
 
     public init?(element: XCUIElement) {
-        //TODO: Implementation will be provided later
-        if true {
-            self.alert = element
+        guard let _ = element.any.elements(containingLabels: type(of: self).messages).first else {
+            return nil
         }
 
-        return nil
+        self.alert = element
     }
 }
 
@@ -225,12 +225,11 @@ public struct SiriAlert: SystemAlert, SystemAlertAllow, SystemAlertDeny {
     public var alert: XCUIElement
 
     public init?(element: XCUIElement) {
-        //TODO: Implementation will be provided later
-        if true {
-            self.alert = element
+        guard let _ = element.any.elements(containingLabels: type(of: self).messages).first else {
+            return nil
         }
 
-        return nil
+        self.alert = element
     }
 }
 
@@ -275,12 +274,11 @@ public struct RemindersAlert: SystemAlert, SystemAlertAllow, SystemAlertDeny {
     public var alert: XCUIElement
 
     public init?(element: XCUIElement) {
-        //TODO: Implementation will be provided later
-        if true {
-            self.alert = element
+        guard let _ = element.any.elements(containingLabels: type(of: self).messages).first else {
+            return nil
         }
 
-        return nil
+        self.alert = element
     }
 }
 
@@ -325,12 +323,11 @@ public struct PhotosAlert: SystemAlert, SystemAlertAllow, SystemAlertDeny {
     public var alert: XCUIElement
 
     public init?(element: XCUIElement) {
-        //TODO: Implementation will be provided later
-        if true {
-            self.alert = element
+        guard let _ = element.any.elements(containingLabels: type(of: self).messages).first else {
+            return nil
         }
 
-        return nil
+        self.alert = element
     }
 }
 
@@ -375,12 +372,11 @@ public struct CameraAlert: SystemAlert, SystemAlertAllow, SystemAlertDeny {
     public var alert: XCUIElement
 
     public init?(element: XCUIElement) {
-        //TODO: Implementation will be provided later
-        if true {
-            self.alert = element
+        guard let _ = element.any.elements(containingLabels: type(of: self).messages).first else {
+            return nil
         }
 
-        return nil
+        self.alert = element
     }
 }
 
@@ -425,12 +421,11 @@ public struct AddressBookAlert: SystemAlert, SystemAlertAllow, SystemAlertDeny {
     public var alert: XCUIElement
 
     public init?(element: XCUIElement) {
-        //TODO: Implementation will be provided later
-        if true {
-            self.alert = element
+        guard let _ = element.any.elements(containingLabels: type(of: self).messages).first else {
+            return nil
         }
 
-        return nil
+        self.alert = element
     }
 }
 
@@ -477,12 +472,11 @@ public struct MediaLibraryAlert: SystemAlert, SystemAlertAllow, SystemAlertDeny 
     public var alert: XCUIElement
 
     public init?(element: XCUIElement) {
-        //TODO: Implementation will be provided later
-        if true {
-            self.alert = element
+        guard let _ = element.any.elements(containingLabels: type(of: self).messages).first else {
+            return nil
         }
 
-        return nil
+        self.alert = element
     }
 }
 
@@ -528,12 +522,11 @@ public struct BluetoothPeripheralAlert: SystemAlert, SystemAlertAllow, SystemAle
     public var alert: XCUIElement
 
     public init?(element: XCUIElement) {
-        //TODO: Implementation will be provided later
-        if true {
-            self.alert = element
+        guard let _ = element.any.elements(containingLabels: type(of: self).messages).first else {
+            return nil
         }
 
-        return nil
+        self.alert = element
     }
 }
 
@@ -578,12 +571,11 @@ public struct MicrophoneAlert: SystemAlert, SystemAlertAllow, SystemAlertDeny {
     public var alert: XCUIElement
 
     public init?(element: XCUIElement) {
-        //TODO: Implementation will be provided later
-        if true {
-            self.alert = element
+        guard let _ = element.any.elements(containingLabels: type(of: self).messages).first else {
+            return nil
         }
 
-        return nil
+        self.alert = element
     }
 }
 
@@ -628,12 +620,11 @@ public struct CallsAlert: SystemAlert, SystemAlertAllow, SystemAlertDeny {
     public var alert: XCUIElement
 
     public init?(element: XCUIElement) {
-        //TODO: Implementation will be provided later
-        if true {
-            self.alert = element
+        guard let _ = element.any.elements(containingLabels: type(of: self).messages).first else {
+            return nil
         }
 
-        return nil
+        self.alert = element
     }
 }
 
@@ -678,12 +669,11 @@ public struct CalendarAlert: SystemAlert, SystemAlertAllow, SystemAlertDeny {
     public var alert: XCUIElement
 
     public init?(element: XCUIElement) {
-        //TODO: Implementation will be provided later
-        if true {
-            self.alert = element
+        guard let _ = element.any.elements(containingLabels: type(of: self).messages).first else {
+            return nil
         }
 
-        return nil
+        self.alert = element
     }
 }
 
@@ -729,12 +719,11 @@ public struct MotionAlert: SystemAlert, SystemAlertAllow, SystemAlertDeny {
     public var alert: XCUIElement
 
     public init?(element: XCUIElement) {
-        //TODO: Implementation will be provided later
-        if true {
-            self.alert = element
+        guard let _ = element.any.elements(containingLabels: type(of: self).messages).first else {
+            return nil
         }
 
-        return nil
+        self.alert = element
     }
 }
 
@@ -780,12 +769,11 @@ public struct WillowAlert: SystemAlert, SystemAlertAllow, SystemAlertDeny {
     public var alert: XCUIElement
 
     public init?(element: XCUIElement) {
-        //TODO: Implementation will be provided later
-        if true {
-            self.alert = element
+        guard let _ = element.any.elements(containingLabels: type(of: self).messages).first else {
+            return nil
         }
 
-        return nil
+        self.alert = element
     }
 }
 

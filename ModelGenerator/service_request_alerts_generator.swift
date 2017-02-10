@@ -81,6 +81,7 @@ func generateServiceRequestAlerts() {
 
     // Generate source code:
     write(toFile: "ServiceRequestAlerts") { (writer) in
+        writer.append(line:"// swiftlint:disable variable_name trailing_comma")
         writer.append(line: "/// Represents possible system service messages and label values on buttons.")
         writer.append(line: "")
         writer.append(line: "import XCTest")
@@ -123,14 +124,13 @@ func generateServiceRequestAlerts() {
                 writer.beginIndent()
                 writer.append(line: "public init?(element: XCUIElement) {")
                 writer.beginIndent()
-                writer.append(line: "//TODO: Implementation will be provided later")
-                writer.append(line: "if true {")
+                writer.append(line: "guard let _ = element.any.elements(containingLabels: type(of: self).messages).first else {")
                 writer.beginIndent()
-                writer.append(line: "self.alert = element")
+                writer.append(line: "return nil")
                 writer.finishIndent()
                 writer.append(line: "}")
                 writer.append(line: "")
-                writer.append(line: "return nil")
+                writer.append(line: "self.alert = element")
                 writer.finishIndent()
                 writer.append(line: "}")
                 writer.finishIndent()
