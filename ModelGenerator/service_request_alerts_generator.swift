@@ -19,7 +19,7 @@ func generateServiceRequestAlerts() {
     func findServices(folderPath: String, servicesDictionary: inout ServiceAlertsConfiguration, optionsDictionary: inout ServiceAlertsConfiguration) {
         let fileManager = FileManager.default
         guard let enumerator: FileManager.DirectoryEnumerator = fileManager.enumerator(atPath: folderPath) else {
-            fatalError("Failed to find path:" + folderPath)
+            fatalError("Failed to find path: \(folderPath)")
         }
 
         while let element = enumerator.nextObject() as? String {
@@ -45,7 +45,9 @@ func generateServiceRequestAlerts() {
 
                     var value = configuration.value
                     // TODO: Temporaly to encode '%@' elements
-                    value = value.replacingOccurrences(of: "\"", with: "\\\"")
+                    value = value
+                        .replacingOccurrences(of: "\"", with: "\\\"")
+                        .replacingOccurrences(of: "%@", with: ".*")
 
                     let updateConfiguration: ((String, String, inout ServiceAlertsConfiguration) -> Void) = { (key, value, dictionary) in
                         var collection = dictionary[key] ?? ServiceAlertCollection()
@@ -61,7 +63,7 @@ func generateServiceRequestAlerts() {
                         key = "SystemAlertDeny"
                         updateConfiguration(key, value, &optionsDictionary)
                     default:
-                        key = key + "Alert"
+                        key = "\(key)Alert"
                         updateConfiguration(key, value, &servicesDictionary)
                     }
                 }
@@ -85,10 +87,10 @@ func generateServiceRequestAlerts() {
         writer.append(line: "/// Represents possible system service messages and label values on buttons.")
         writer.append(line: "")
         writer.append(line: "import XCTest")
-        writer.append(line: "")
 
         let createSystemAlertOptions: (ServiceAlertsConfiguration) -> () = { dictionary in
             for item in dictionary {
+                writer.append(line: "")
                 writer.append(line: "extension \(item.key) {")
                 writer.beginIndent()
                 writer.append(line: "public static var " + (item.key.lowercased().contains("allow") ? "allow" : "deny") + ": [String] {")
@@ -102,12 +104,12 @@ func generateServiceRequestAlerts() {
                 writer.append(line: "}")
                 writer.finishIndent()
                 writer.append(line: "}")
-                writer.append(line: "")
             }
         }
 
         let createSystemServices: (ServiceAlertsConfiguration) -> () = { dictionary in
             for item in dictionary {
+                writer.append(line: "")
                 writer.append(line: "public struct \(item.key): SystemAlert, SystemAlertAllow, SystemAlertDeny {")
                 writer.beginIndent()
                 writer.append(line: "public static let messages = [")
@@ -124,7 +126,7 @@ func generateServiceRequestAlerts() {
                 writer.beginIndent()
                 writer.append(line: "public init?(element: XCUIElement) {")
                 writer.beginIndent()
-                writer.append(line: "guard let _ = element.any.elements(containingLabels: type(of: self).messages).first else {")
+                writer.append(line: "guard let _ = element.any.elements(withLabelsMatchingExpressions: type(of: self).messages).first else {")
                 writer.beginIndent()
                 writer.append(line: "return nil")
                 writer.finishIndent()
@@ -135,7 +137,6 @@ func generateServiceRequestAlerts() {
                 writer.append(line: "}")
                 writer.finishIndent()
                 writer.append(line: "}")
-                writer.append(line: "")
             }
         }
 
