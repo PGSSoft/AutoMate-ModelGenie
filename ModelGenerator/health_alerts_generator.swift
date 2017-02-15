@@ -14,7 +14,7 @@ func generateHealthAlerts() {
 
     /// Iterates recursively throught directory content
     // swiftlint:disable:next function_body_length cyclomatic_complexity
-    func findServices(alertsDictionary: inout NamedMessageCollection, optionsDictionary: inout NamedMessageCollection) {
+    func findServices(viewsDictionary: inout NamedMessageCollection, alertsDictionary: inout NamedMessageCollection, optionsDictionary: inout NamedMessageCollection) {
         readStringsRecursively(fileName: "HealthUI-Localizable.strings", in: healthKitPath) { _, _, content in
             for configuration in content {
                 var key = configuration.key
@@ -33,8 +33,14 @@ func generateHealthAlerts() {
                 case "DISABLE_ALL_CATEGORIES":
                     key = "HealthAlertTurnOffAll"
                     update(namedMessageCollection: &optionsDictionary, key: key, value: value)
+                case "AUTHORIZATION_DONT_ALLOW_ALERT_OK":
+                    key = "HealthAlertOk"
+                    update(namedMessageCollection: &optionsDictionary, key: key, value: value)
                 case "%@_WOULD_LIKE_TO_ACCESS_YOUR_HEALTH_DATA":
-                    key = "HealthAlert"
+                    key = "HealthPermissionView"
+                    update(namedMessageCollection: &viewsDictionary, key: key, value: value)
+                case "AUTHORIZATION_DONT_ALLOW_ALERT_TITLE":
+                    key = "HealthAuthorizationDontAllowAlert"
                     update(namedMessageCollection: &alertsDictionary, key: key, value: value)
                 default: ()
                 }
@@ -43,13 +49,16 @@ func generateHealthAlerts() {
     }
 
     // Body ====================================================================
-    // Permission / alerts messages.
+    // Permission messages.
+    var viewsDictionary = NamedMessageCollection()
+    // Alerts messages.
     var alertsDictionary = NamedMessageCollection()
     // Allow, Deny, OK, Cancel, etc. messages.
     var optionsDictionary = NamedMessageCollection()
 
-    findServices(alertsDictionary: &alertsDictionary,
-                 optionsDictionary: &optionsDictionary)
+    findServices(viewsDictionary: &viewsDictionary,
+        alertsDictionary: &alertsDictionary,
+        optionsDictionary: &optionsDictionary)
 
     // Generate source code:
     write(toFile: "HealthAlerts") { (writer) in
@@ -66,6 +75,7 @@ func generateHealthAlerts() {
                 case "HealthAlertDeny": messagesKey = "deny"
                 case "HealthAlertTurnOnAll": messagesKey = "turnOnAll"
                 case "HealthAlertTurnOffAll": messagesKey = "turnOffAll"
+                case "HealthAlertOk": messagesKey = "ok"
                 default: preconditionFailure("Not supported alert message key.")
                 }
 
@@ -86,10 +96,25 @@ func generateHealthAlerts() {
             }
         }
 
+        let createViews: (NamedMessageCollection) -> Void = { dictionary in
+            for item in dictionary {
+                writer.append(line: "")
+                writer.append(line: "public extension \(item.key) {")
+                writer.beginIndent()
+                writer.append(line: "public static let messages = [")
+                writer.beginIndent()
+                item.value.forEach({ writer.append(line: "\"\($0)\",") })
+                writer.finishIndent()
+                writer.append(line: "]")
+                writer.finishIndent()
+                writer.append(line: "}")
+            }
+        }
+
         let createAlerts: (NamedMessageCollection) -> Void = { dictionary in
             for item in dictionary {
                 writer.append(line: "")
-                writer.append(line: "public struct \(item.key): SystemAlert, HealthAlertAllow, HealthAlertDeny, HealthAlertTurnOnAll, HealthAlertTurnOffAll {")
+                writer.append(line: "public struct \(item.key): SystemAlert, HealthAlertOk {")
                 writer.beginIndent()
                 writer.append(line: "public static let messages = [")
                 writer.beginIndent()
@@ -120,6 +145,8 @@ func generateHealthAlerts() {
 
         // Creates structure for options:
         createAlertOptions(optionsDictionary)
+        // Create classes for options:
+        createViews(viewsDictionary)
         // Creates structure for alerts:
         createAlerts(alertsDictionary)
     }
