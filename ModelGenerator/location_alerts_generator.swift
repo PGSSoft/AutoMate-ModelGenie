@@ -85,8 +85,15 @@ func generateLocationAlerts() {
 
         let createAlerts: (NamedMessageCollection) -> Void = { dictionary in
             for item in dictionary {
+
+                let protocols: String
+                switch item.key {
+                case "LocationUpgradeWhenInUseAlwaysAlert": protocols = "LocationAlertAllow, LocationAlertCancel"
+                default: protocols = "LocationAlertAllow, LocationAlertDeny"
+                }
+
                 writer.append(line: "")
-                writer.append(line: "public struct \(item.key): SystemAlert, LocationAlertAllow, LocationAlertDeny {")
+                writer.append(line: "public struct \(item.key): SystemAlert, \(protocols) {")
                 writer.beginIndent()
                 writer.append(line: "public static let messages = [")
                 writer.beginIndent()
