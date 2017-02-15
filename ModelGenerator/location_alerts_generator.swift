@@ -1,23 +1,16 @@
-//
-//  service_request_alerts_generator.swift
-//  ModelGenerator
-//
-//  Created by Ewelina Cyło on 20/01/2017.
-//  Copyright © 2017 PGS Software S.A. All rights reserved.
-//
-
 import Foundation
 
 // swiftlint:disable:next function_body_length
-func generateServiceRequestAlerts() {
-    let serviceAlertsPath = Configuration.developerDirectory + "/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/PrivateFrameworks/TCC.framework"
+func generateLocationAlerts() {
+    let coreLocationPath = Configuration.developerDirectory + "/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/CoreLocation.framework"
 
     typealias MessageCollection = Set<String>
     typealias NamedMessageCollection = [String: MessageCollection]
 
     /// Iterates recursively throught directory content
-    func findServices(folderPath: String, servicesDictionary: inout NamedMessageCollection, optionsDictionary: inout NamedMessageCollection) {
-        let serviceAlertsConfigurationFileName = "Localizable.strings"
+    // swiftlint:disable:next function_body_length cyclomatic_complexity
+    func findServices(folderPath: String, alertsDictionary: inout NamedMessageCollection, optionsDictionary: inout NamedMessageCollection) {
+        let serviceAlertsConfigurationFileName = "locationd.strings"
         let fileManager = FileManager.default
         guard let enumerator: FileManager.DirectoryEnumerator = fileManager.enumerator(atPath: folderPath) else {
             fatalError("Failed to find path: \(folderPath)")
@@ -30,21 +23,13 @@ func generateServiceRequestAlerts() {
 
             if isDirectory.boolValue {
                 // Search for file in nested folders:
-                findServices(folderPath: path, servicesDictionary: &servicesDictionary, optionsDictionary: &optionsDictionary)
+                findServices(folderPath: path, alertsDictionary: &alertsDictionary, optionsDictionary: &optionsDictionary)
             } else if element == serviceAlertsConfigurationFileName {
                 for configuration in readStrings(fromPath: path) {
-                    // Keys are constructed in following manner:
-                    // - REQUEST_ACCESS_SERVICE_kTCCService[ServiceName]
-                    // - REQUEST_ACCESS_INFO_SERVICE_kTCCService[ServiceName]
-                    // - REQUEST_ACCESS_[Allow/Deny]
-
                     // Removing prefix for system alerts:
                     var key = configuration.key
-                        .replacingOccurrences(of: "REQUEST_ACCESS_SERVICE_kTCCService", with: "")
-                        .replacingOccurrences(of: "REQUEST_ACCESS_INFO_SERVICE_kTCCService", with: "")
-                        .replacingOccurrences(of: "REQUEST_ACCESS_", with: "")
-
-                    let value = configuration.value
+                    var value = configuration.value
+                    value = value
                         .replacingOccurrences(of: "\"", with: "\\\"")
                         .replacingOccurrences(of: "%@", with: "*")
 
@@ -55,15 +40,28 @@ func generateServiceRequestAlerts() {
                     }
 
                     switch key {
-                    case _ where key.uppercased().contains("ALLOW"):
-                        key = "SystemAlertAllow"
+                    case _ where key.uppercased().contains("LOCATION_CLIENT_PERMISSION_OK"):
+                        key = "LocationAlertAllow"
                         updateConfiguration(key, value, &optionsDictionary)
-                    case _ where key.uppercased().contains("DENY"):
-                        key = "SystemAlertDeny"
+                    case _ where key.uppercased().contains("DONT_ALLOW"):
+                        key = "LocationAlertDeny"
                         updateConfiguration(key, value, &optionsDictionary)
-                    default:
-                        key = "\(key)Alert"
-                        updateConfiguration(key, value, &servicesDictionary)
+                    case _ where key.uppercased().contains("OK"):
+                        key = "LocationAlertOk"
+                        updateConfiguration(key, value, &optionsDictionary)
+                    case _ where key.uppercased().contains("LOCATION_CLIENT_PERMISSION_CANCEL"):
+                        key = "LocationAlertCancel"
+                        updateConfiguration(key, value, &optionsDictionary)
+                    case _ where key.uppercased().contains("LOCATION_CLIENT_PERMISSION_WHENINUSE"):
+                        key = "LocationWhenInUseAlert"
+                        updateConfiguration(key, value, &alertsDictionary)
+                    case _ where key.uppercased().contains("LOCATION_CLIENT_PERMISSION_ALWAYS"):
+                        key = "LocationAlwaysAlert"
+                        updateConfiguration(key, value, &alertsDictionary)
+                    case _ where key.uppercased().contains("LOCATION_CLIENT_PERMISSION_UPGRADE_WHENINUSE_ALWAYS"):
+                        key = "LocationUpgradeWhenInUseAlwaysAlert"
+                        updateConfiguration(key, value, &alertsDictionary)
+                    default: ()
                     }
                 }
             }
@@ -71,28 +69,37 @@ func generateServiceRequestAlerts() {
     }
 
     // Body ====================================================================
-    // Speech Recognition, Siri, Reminders, Photos, Camera, etc. messages.
-    var servicesDictionary = NamedMessageCollection()
-    // Allow and Deny messages.
+    // Permission / alerts messages.
+    var alertsDictionary = NamedMessageCollection()
+    // Allow, Deny, OK, Cancel, etc. messages.
     var optionsDictionary = NamedMessageCollection()
 
-    findServices(folderPath: serviceAlertsPath,
-                 servicesDictionary: &servicesDictionary,
+    findServices(folderPath: coreLocationPath,
+                 alertsDictionary: &alertsDictionary,
                  optionsDictionary: &optionsDictionary)
 
     // Generate source code:
-    write(toFile: "ServiceRequestAlerts") { (writer) in
+    write(toFile: "LocationAlerts") { (writer) in
         writer.append(line:"// swiftlint:disable variable_name trailing_comma")
-        writer.append(line: "/// Represents possible system service messages and label values on buttons.")
+        writer.append(line: "/// Represents possible location service messages and label values on buttons.")
         writer.append(line: "")
         writer.append(line: "import XCTest")
 
-        let createSystemAlertOptions: (NamedMessageCollection) -> Void = { dictionary in
+        let createLocationAlertOptions: (NamedMessageCollection) -> Void = { dictionary in
             for item in dictionary {
+                let messagesKey: String
+                switch item.key {
+                case "LocationAlertAllow": messagesKey = "allow"
+                case "LocationAlertDeny": messagesKey = "deny"
+                case "LocationAlertOk": messagesKey = "ok"
+                case "LocationAlertCancel": messagesKey = "cancel"
+                default: preconditionFailure("Not supported alert message key.")
+                }
+
                 writer.append(line: "")
                 writer.append(line: "extension \(item.key) {")
                 writer.beginIndent()
-                writer.append(line: "public static var \(item.key.lowercased().contains("allow") ? "allow" : "deny"): [String] {")
+                writer.append(line: "public static var \(messagesKey): [String] {")
                 writer.beginIndent()
                 writer.append(line: "return [")
                 writer.beginIndent()
@@ -106,10 +113,10 @@ func generateServiceRequestAlerts() {
             }
         }
 
-        let createSystemServices: (NamedMessageCollection) -> Void = { dictionary in
+        let createLocationAlerts: (NamedMessageCollection) -> Void = { dictionary in
             for item in dictionary {
                 writer.append(line: "")
-                writer.append(line: "public struct \(item.key): SystemAlert, SystemAlertAllow, SystemAlertDeny {")
+                writer.append(line: "public struct \(item.key): SystemAlert, LocationAlertAllow, LocationAlertDeny {")
                 writer.beginIndent()
                 writer.append(line: "public static let messages = [")
                 writer.beginIndent()
@@ -139,8 +146,8 @@ func generateServiceRequestAlerts() {
         }
 
         // Creates structure for system alerts:
-        createSystemAlertOptions(optionsDictionary)
+        createLocationAlertOptions(optionsDictionary)
         // Creates structure for system services:
-        createSystemServices(servicesDictionary)
+        createLocationAlerts(alertsDictionary)
     }
 }

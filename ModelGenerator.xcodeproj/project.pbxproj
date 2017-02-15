@@ -11,7 +11,7 @@
 		1F6648651D5D9C0300307AAB /* shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6648641D5D9C0300307AAB /* shared.swift */; };
 		1F66486C1D5D9D0500307AAB /* countries_generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6648681D5D9D0500307AAB /* countries_generator.swift */; };
 		1F66486D1D5D9D0500307AAB /* keyboards_generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F6648691D5D9D0500307AAB /* keyboards_generator.swift */; };
-		1F66486E1D5D9D0500307AAB /* labels_generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F66486A1D5D9D0500307AAB /* labels_generator.swift */; };
+		1F66486E1D5D9D0500307AAB /* location_alerts_generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F66486A1D5D9D0500307AAB /* location_alerts_generator.swift */; };
 		1F66486F1D5D9D0500307AAB /* languages_generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F66486B1D5D9D0500307AAB /* languages_generator.swift */; };
 		C9583BD71E48A3C60098BB27 /* service_request_alerts_generator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9583BD61E48A3C60098BB27 /* service_request_alerts_generator.swift */; };
 		C9583BF11E4B28300098BB27 /* configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9583BF01E4B28300098BB27 /* configuration.swift */; };
@@ -35,7 +35,7 @@
 		1F6648641D5D9C0300307AAB /* shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shared.swift; sourceTree = "<group>"; };
 		1F6648681D5D9D0500307AAB /* countries_generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = countries_generator.swift; sourceTree = "<group>"; };
 		1F6648691D5D9D0500307AAB /* keyboards_generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = keyboards_generator.swift; sourceTree = "<group>"; };
-		1F66486A1D5D9D0500307AAB /* labels_generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = labels_generator.swift; sourceTree = "<group>"; };
+		1F66486A1D5D9D0500307AAB /* location_alerts_generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = location_alerts_generator.swift; sourceTree = "<group>"; };
 		1F66486B1D5D9D0500307AAB /* languages_generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = languages_generator.swift; sourceTree = "<group>"; };
 		96BB6F421E52F47A00A74DA1 /* GeneratedModels */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GeneratedModels; sourceTree = "<group>"; };
 		C9583BD61E48A3C60098BB27 /* service_request_alerts_generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = service_request_alerts_generator.swift; sourceTree = "<group>"; };
@@ -76,8 +76,8 @@
 				C9583BF01E4B28300098BB27 /* configuration.swift */,
 				1F6648681D5D9D0500307AAB /* countries_generator.swift */,
 				1F6648691D5D9D0500307AAB /* keyboards_generator.swift */,
-				1F66486A1D5D9D0500307AAB /* labels_generator.swift */,
 				1F66486B1D5D9D0500307AAB /* languages_generator.swift */,
+				1F66486A1D5D9D0500307AAB /* location_alerts_generator.swift */,
 				1F66485D1D5D978700307AAB /* main.swift */,
 				C9583BD61E48A3C60098BB27 /* service_request_alerts_generator.swift */,
 				1F6648641D5D9C0300307AAB /* shared.swift */,
@@ -95,6 +95,7 @@
 				1F6648561D5D978700307AAB /* Sources */,
 				1F6648571D5D978700307AAB /* Frameworks */,
 				1F6648581D5D978700307AAB /* CopyFiles */,
+				96BB6F491E53363E00A74DA1 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -138,6 +139,23 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		96BB6F491E53363E00A74DA1 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1F6648561D5D978700307AAB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -145,7 +163,7 @@
 			files = (
 				C9583BD71E48A3C60098BB27 /* service_request_alerts_generator.swift in Sources */,
 				1F6648651D5D9C0300307AAB /* shared.swift in Sources */,
-				1F66486E1D5D9D0500307AAB /* labels_generator.swift in Sources */,
+				1F66486E1D5D9D0500307AAB /* location_alerts_generator.swift in Sources */,
 				1F66486C1D5D9D0500307AAB /* countries_generator.swift in Sources */,
 				1F66486F1D5D9D0500307AAB /* languages_generator.swift in Sources */,
 				1F66486D1D5D9D0500307AAB /* keyboards_generator.swift in Sources */,

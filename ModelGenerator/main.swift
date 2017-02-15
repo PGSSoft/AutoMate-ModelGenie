@@ -12,6 +12,6 @@ let outputDirectory = "GeneratedModels"
 
 generateCountries()
 generateKeyboards()
-generateLabels()
+generateLocationAlerts()
 generateServiceRequestAlerts()
 //generateLanguages() // Doesn't work with Xcode 8
