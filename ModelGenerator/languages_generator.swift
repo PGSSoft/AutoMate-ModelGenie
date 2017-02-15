@@ -10,9 +10,7 @@ func generateLanguages() {
 
     let simulatorLanguagesPath = Configuration.developerDirectory + "/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/PrivateFrameworks/IntlPreferences.framework/Language.strings"
 
-    guard let languagesDictionary = NSDictionary(contentsOfFile: simulatorLanguagesPath) as? [String: String] else {
-        preconditionFailure("Couldn't load languages from Simulator")
-    }
+    let languagesDictionary = readStrings(fromPath: simulatorLanguagesPath)
 
     write(toFile: "SystemLanguage") { (writer) in
         writer.append(line: "// swiftlint:disable type_body_length")

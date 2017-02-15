@@ -13,9 +13,7 @@ func generateCountries() {
 
     let simulatorCountriesPath = Configuration.developerDirectory + "/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/PrivateFrameworks/AppSupport.framework/English.lproj/Localizable_Countries.strings"
 
-    guard let countriesDictionary = NSDictionary(contentsOfFile: simulatorCountriesPath) as? [String: String] else {
-        preconditionFailure("Couldn't load countries from Simulator")
-    }
+    let countriesDictionary = readStrings(fromPath: simulatorCountriesPath)
 
     write(toFile: "SystemCountry") { (writer) in
         writer.append(line: "// swiftlint:disable type_body_length")

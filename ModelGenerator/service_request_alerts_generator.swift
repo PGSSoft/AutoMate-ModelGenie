@@ -12,59 +12,32 @@ import Foundation
 func generateServiceRequestAlerts() {
     let serviceAlertsPath = Configuration.developerDirectory + "/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/PrivateFrameworks/TCC.framework"
 
-    typealias MessageCollection = Set<String>
-    typealias NamedMessageCollection = [String: MessageCollection]
-
     /// Iterates recursively throught directory content
-    func findServices(folderPath: String, servicesDictionary: inout NamedMessageCollection, optionsDictionary: inout NamedMessageCollection) {
-        let serviceAlertsConfigurationFileName = "Localizable.strings"
-        let fileManager = FileManager.default
-        guard let enumerator: FileManager.DirectoryEnumerator = fileManager.enumerator(atPath: folderPath) else {
-            fatalError("Failed to find path: \(folderPath)")
-        }
+    func findServices(servicesDictionary: inout NamedMessageCollection, optionsDictionary: inout NamedMessageCollection) {
+        readStringsRecursively(fileName: "Localizable.strings", in: serviceAlertsPath) { _, _, content in
+            for configuration in content {
+                // Keys are constructed in following manner:
+                // - REQUEST_ACCESS_SERVICE_kTCCService[ServiceName]
+                // - REQUEST_ACCESS_INFO_SERVICE_kTCCService[ServiceName]
+                // - REQUEST_ACCESS_[Allow/Deny]
 
-        while let element = enumerator.nextObject() as? String {
-            let path = (folderPath as NSString).appendingPathComponent(element)
-            var isDirectory: ObjCBool = false
-            fileManager.fileExists(atPath: path, isDirectory: &isDirectory)
+                // Removing prefix for system alerts:
+                var key = configuration.key
+                    .replacingOccurrences(of: "REQUEST_ACCESS_SERVICE_kTCCService", with: "")
+                    .replacingOccurrences(of: "REQUEST_ACCESS_INFO_SERVICE_kTCCService", with: "")
+                    .replacingOccurrences(of: "REQUEST_ACCESS_", with: "")
+                let value = configuration.value.normalizedForLikeExpression
 
-            if isDirectory.boolValue {
-                // Search for file in nested folders:
-                findServices(folderPath: path, servicesDictionary: &servicesDictionary, optionsDictionary: &optionsDictionary)
-            } else if element == serviceAlertsConfigurationFileName {
-                for configuration in readStrings(fromPath: path) {
-                    // Keys are constructed in following manner:
-                    // - REQUEST_ACCESS_SERVICE_kTCCService[ServiceName]
-                    // - REQUEST_ACCESS_INFO_SERVICE_kTCCService[ServiceName]
-                    // - REQUEST_ACCESS_[Allow/Deny]
-
-                    // Removing prefix for system alerts:
-                    var key = configuration.key
-                        .replacingOccurrences(of: "REQUEST_ACCESS_SERVICE_kTCCService", with: "")
-                        .replacingOccurrences(of: "REQUEST_ACCESS_INFO_SERVICE_kTCCService", with: "")
-                        .replacingOccurrences(of: "REQUEST_ACCESS_", with: "")
-
-                    let value = configuration.value
-                        .replacingOccurrences(of: "\"", with: "\\\"")
-                        .replacingOccurrences(of: "%@", with: "*")
-
-                    let updateConfiguration: ((String, String, inout NamedMessageCollection) -> Void) = { (key, value, dictionary) in
-                        var collection = dictionary[key] ?? MessageCollection()
-                        collection.insert(value)
-                        dictionary[key] = collection
-                    }
-
-                    switch key {
-                    case _ where key.uppercased().contains("ALLOW"):
-                        key = "SystemAlertAllow"
-                        updateConfiguration(key, value, &optionsDictionary)
-                    case _ where key.uppercased().contains("DENY"):
-                        key = "SystemAlertDeny"
-                        updateConfiguration(key, value, &optionsDictionary)
-                    default:
-                        key = "\(key)Alert"
-                        updateConfiguration(key, value, &servicesDictionary)
-                    }
+                switch key {
+                case _ where key.uppercased().contains("ALLOW"):
+                    key = "SystemAlertAllow"
+                    update(namedMessageCollection: &optionsDictionary, key: key, value: value)
+                case _ where key.uppercased().contains("DENY"):
+                    key = "SystemAlertDeny"
+                    update(namedMessageCollection: &optionsDictionary, key: key, value: value)
+                default:
+                    key = "\(key)Alert"
+                    update(namedMessageCollection: &servicesDictionary, key: key, value: value)
                 }
             }
         }
@@ -72,12 +45,11 @@ func generateServiceRequestAlerts() {
 
     // Body ====================================================================
     // Speech Recognition, Siri, Reminders, Photos, Camera, etc. messages.
-    var servicesDictionary = NamedMessageCollection()
+    var alertsDictionary = NamedMessageCollection()
     // Allow and Deny messages.
     var optionsDictionary = NamedMessageCollection()
 
-    findServices(folderPath: serviceAlertsPath,
-                 servicesDictionary: &servicesDictionary,
+    findServices(servicesDictionary: &alertsDictionary,
                  optionsDictionary: &optionsDictionary)
 
     // Generate source code:
@@ -87,7 +59,7 @@ func generateServiceRequestAlerts() {
         writer.append(line: "")
         writer.append(line: "import XCTest")
 
-        let createSystemAlertOptions: (NamedMessageCollection) -> Void = { dictionary in
+        let createAlertOptions: (NamedMessageCollection) -> Void = { dictionary in
             for item in dictionary {
                 writer.append(line: "")
                 writer.append(line: "extension \(item.key) {")
@@ -106,7 +78,7 @@ func generateServiceRequestAlerts() {
             }
         }
 
-        let createSystemServices: (NamedMessageCollection) -> Void = { dictionary in
+        let createAlerts: (NamedMessageCollection) -> Void = { dictionary in
             for item in dictionary {
                 writer.append(line: "")
                 writer.append(line: "public struct \(item.key): SystemAlert, SystemAlertAllow, SystemAlertDeny {")
@@ -138,9 +110,9 @@ func generateServiceRequestAlerts() {
             }
         }
 
-        // Creates structure for system alerts:
-        createSystemAlertOptions(optionsDictionary)
-        // Creates structure for system services:
-        createSystemServices(servicesDictionary)
+        // Creates structure for options:
+        createAlertOptions(optionsDictionary)
+        // Creates structure for alerts:
+        createAlerts(alertsDictionary)
     }
 }

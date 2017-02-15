@@ -1,37 +1,40 @@
+//
+//  health_alerts_generator.swift
+//  ModelGenerator
+//
+//  Created by Bartosz Janda on 15.02.2017.
+//  Copyright © 2017 PGS Software S.A. All rights reserved.
+//
+
 import Foundation
 
 // swiftlint:disable:next function_body_length
-func generateLocationAlerts() {
-    let coreLocationPath = Configuration.developerDirectory + "/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/CoreLocation.framework"
+func generateHealthAlerts() {
+    let healthKitPath = Configuration.developerDirectory + "/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/PrivateFrameworks/HealthUI.framework"
 
     /// Iterates recursively throught directory content
+    // swiftlint:disable:next function_body_length cyclomatic_complexity
     func findServices(alertsDictionary: inout NamedMessageCollection, optionsDictionary: inout NamedMessageCollection) {
-        readStringsRecursively(fileName: "locationd.strings", in: coreLocationPath) { _, _, content in
+        readStringsRecursively(fileName: "HealthUI-Localizable.strings", in: healthKitPath) { _, _, content in
             for configuration in content {
                 var key = configuration.key
                 let value = configuration.value.normalizedForLikeExpression
 
                 switch key {
-                case "LOCATION_CLIENT_PERMISSION_OK":
-                    key = "LocationAlertAllow"
+                case "AUTHORIZATION_PROMPT_ALLOW":
+                    key = "HealthAlertAllow"
                     update(namedMessageCollection: &optionsDictionary, key: key, value: value)
-                case "DONT_ALLOW":
-                    key = "LocationAlertDeny"
+                case "AUTHORIZATION_PROMPT_DONT_ALLOW":
+                    key = "HealthAlertDeny"
                     update(namedMessageCollection: &optionsDictionary, key: key, value: value)
-                case "OK":
-                    key = "LocationAlertOk"
+                case "ENABLE_ALL_CATEGORIES":
+                    key = "HealthAlertTurnOnAll"
                     update(namedMessageCollection: &optionsDictionary, key: key, value: value)
-                case "LOCATION_CLIENT_PERMISSION_CANCEL":
-                    key = "LocationAlertCancel"
+                case "DISABLE_ALL_CATEGORIES":
+                    key = "HealthAlertTurnOffAll"
                     update(namedMessageCollection: &optionsDictionary, key: key, value: value)
-                case "LOCATION_CLIENT_PERMISSION_WHENINUSE":
-                    key = "LocationWhenInUseAlert"
-                    update(namedMessageCollection: &alertsDictionary, key: key, value: value)
-                case "LOCATION_CLIENT_PERMISSION_ALWAYS":
-                    key = "LocationAlwaysAlert"
-                    update(namedMessageCollection: &alertsDictionary, key: key, value: value)
-                case "LOCATION_CLIENT_PERMISSION_UPGRADE_WHENINUSE_ALWAYS":
-                    key = "LocationUpgradeWhenInUseAlwaysAlert"
+                case "%@_WOULD_LIKE_TO_ACCESS_YOUR_HEALTH_DATA":
+                    key = "HealthAlert"
                     update(namedMessageCollection: &alertsDictionary, key: key, value: value)
                 default: ()
                 }
@@ -49,9 +52,9 @@ func generateLocationAlerts() {
                  optionsDictionary: &optionsDictionary)
 
     // Generate source code:
-    write(toFile: "LocationAlerts") { (writer) in
+    write(toFile: "HealthAlerts") { (writer) in
         writer.append(line:"// swiftlint:disable variable_name trailing_comma")
-        writer.append(line: "/// Represents possible location service messages and label values on buttons.")
+        writer.append(line: "/// Represents possible health service messages and label values on buttons.")
         writer.append(line: "")
         writer.append(line: "import XCTest")
 
@@ -59,10 +62,10 @@ func generateLocationAlerts() {
             for item in dictionary {
                 let messagesKey: String
                 switch item.key {
-                case "LocationAlertAllow": messagesKey = "allow"
-                case "LocationAlertDeny": messagesKey = "deny"
-                case "LocationAlertOk": messagesKey = "ok"
-                case "LocationAlertCancel": messagesKey = "cancel"
+                case "HealthAlertAllow": messagesKey = "allow"
+                case "HealthAlertDeny": messagesKey = "deny"
+                case "HealthAlertTurnOnAll": messagesKey = "turnOnAll"
+                case "HealthAlertTurnOffAll": messagesKey = "turnOffAll"
                 default: preconditionFailure("Not supported alert message key.")
                 }
 
@@ -86,7 +89,7 @@ func generateLocationAlerts() {
         let createAlerts: (NamedMessageCollection) -> Void = { dictionary in
             for item in dictionary {
                 writer.append(line: "")
-                writer.append(line: "public struct \(item.key): SystemAlert, LocationAlertAllow, LocationAlertDeny {")
+                writer.append(line: "public struct \(item.key): SystemAlert, HealthAlertAllow, HealthAlertDeny, HealthAlertTurnOnAll, HealthAlertTurnOffAll {")
                 writer.beginIndent()
                 writer.append(line: "public static let messages = [")
                 writer.beginIndent()

@@ -8,6 +8,7 @@
 
 import Foundation
 
+// MARK: - Other
 private let identifierRegex: NSRegularExpression = {
     let regex = "\\W+"
     guard let expr = try? NSRegularExpression(pattern: regex, options: []) else {
@@ -21,6 +22,61 @@ func asIdentifier(_ input: String) -> String {
     return identifierRegex.stringByReplacingMatches(in: input, options: [], range: range, withTemplate: "")
 }
 
+// MARK: - Strings readers
+typealias StringsType = [String: String]
+func readStrings(fromPath path: String) -> StringsType {
+    guard let plist = NSDictionary(contentsOfFile: path) as? StringsType else {
+        preconditionFailure("Couldn't load countries from Simulator")
+    }
+
+    return plist
+}
+
+func readRecursively(fileName: String, in directory: String, clouser: (_ fileName: String, _ path: String) -> Void) {
+    let fileManager = FileManager.default
+    guard let enumerator = fileManager.enumerator(atPath: directory) else {
+        fatalError("Failed to find path: \(directory)")
+    }
+
+    while let element = enumerator.nextObject() as? String {
+        let path = (directory as NSString).appendingPathComponent(element)
+        var isDirectory: ObjCBool = false
+        fileManager.fileExists(atPath: path, isDirectory: &isDirectory)
+
+        if isDirectory.boolValue {
+            readRecursively(fileName: fileName, in: path, clouser: clouser)
+        } else if element == fileName {
+            clouser(element, path)
+        }
+    }
+}
+
+func readStringsRecursively(fileName: String, in directory: String, closure: (_ fileName: String, _ path: String, _ content: StringsType) -> Void) {
+    readRecursively(fileName: fileName, in: directory) { fileName, path in
+        let content = readStrings(fromPath: path)
+        closure(fileName, path, content)
+    }
+}
+
+// MARK: - Message collections
+typealias MessageCollection = Set<String>
+typealias NamedMessageCollection = [String: MessageCollection]
+
+func update(namedMessageCollection namedCollection: inout NamedMessageCollection, key: String, value: String) {
+    var collection = namedCollection[key] ?? MessageCollection()
+    collection.insert(value)
+    namedCollection[key] = collection
+}
+
+// MARK: - String extension
+extension String {
+    var normalizedForLikeExpression: String {
+        return replacingOccurrences(of: "\"", with: "\\\"")
+            .replacingOccurrences(of: "%@", with: "*")
+    }
+}
+
+// MARK: - Writer
 func write(toFile name: String, block: (_ writer: Writer) -> Void) {
     func sourceDirectory() -> String {
         guard let directory = ProcessInfo.processInfo.environment["SRCROOT"] else {
@@ -32,15 +88,7 @@ func write(toFile name: String, block: (_ writer: Writer) -> Void) {
 
     let writer = Writer()
     block(writer)
-    writer.write(to: sourceDirectory() + "/" + outputDirectory + "/\(name).swift")
-}
-
-func readStrings(fromPath path: String) -> [String: String] {
-    guard let plist = NSDictionary(contentsOfFile: path) as? [String: String] else {
-        preconditionFailure("Couldn't load countries from Simulator")
-    }
-
-    return plist
+    writer.write(to: "\(sourceDirectory())/\(outputDirectory)/\(name).swift")
 }
 
 /// Helper for generating source code.
