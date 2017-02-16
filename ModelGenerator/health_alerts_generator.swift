@@ -68,7 +68,7 @@ func generateHealthAlerts() {
         writer.append(line: "import XCTest")
 
         let createAlertOptions: (NamedMessageCollection) -> Void = { dictionary in
-            for item in dictionary {
+            for item in dictionary.sorted(by: { $0.0.key < $0.1.key }) {
                 let messagesKey: String
                 switch item.key {
                 case "HealthAlertAllow": messagesKey = "allow"
@@ -97,7 +97,7 @@ func generateHealthAlerts() {
         }
 
         let createViews: (NamedMessageCollection) -> Void = { dictionary in
-            for item in dictionary {
+            for item in dictionary.sorted(by: { $0.0.key < $0.1.key }) {
                 writer.append(line: "")
                 writer.append(line: "public extension \(item.key) {")
                 writer.beginIndent()
@@ -112,7 +112,7 @@ func generateHealthAlerts() {
         }
 
         let createAlerts: (NamedMessageCollection) -> Void = { dictionary in
-            for item in dictionary {
+            for item in dictionary.sorted(by: { $0.0.key < $0.1.key }) {
                 writer.append(line: "")
                 writer.append(line: "public struct \(item.key): SystemAlert, HealthAlertOk {")
                 writer.beginIndent()

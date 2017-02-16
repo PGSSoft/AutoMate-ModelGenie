@@ -60,7 +60,7 @@ func generateServiceRequestAlerts() {
         writer.append(line: "import XCTest")
 
         let createAlertOptions: (NamedMessageCollection) -> Void = { dictionary in
-            for item in dictionary {
+            for item in dictionary.sorted(by: { $0.0.key < $0.1.key }) {
                 writer.append(line: "")
                 writer.append(line: "extension \(item.key) {")
                 writer.beginIndent()
@@ -79,7 +79,7 @@ func generateServiceRequestAlerts() {
         }
 
         let createAlerts: (NamedMessageCollection) -> Void = { dictionary in
-            for item in dictionary {
+            for item in dictionary.sorted(by: { $0.0.key < $0.1.key }) {
                 writer.append(line: "")
                 writer.append(line: "public struct \(item.key): SystemAlert, SystemAlertAllow, SystemAlertDeny {")
                 writer.beginIndent()

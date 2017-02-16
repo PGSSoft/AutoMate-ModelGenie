@@ -64,7 +64,7 @@ func writeKeyboardEnum(to name: String, variant: String, cases: [NameAndValue]) 
 }
 
 func generateKeyboards() {
-    let keyboards = getKeyboards()
+    let keyboards = getKeyboards().sorted { $0.0.name < $0.1.name }
     var softwareKeyboards = [NameAndValue]()
     var hardwareKeyboards = [NameAndValue]()
     for item in keyboards {

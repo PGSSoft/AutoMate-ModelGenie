@@ -19,7 +19,7 @@ func generateLanguages() {
         writer.append(line: "public enum SystemLanguage: String, LaunchArgumentValue {")
 
         writer.beginIndent()
-        for identifier in languagesDictionary.keys {
+        for identifier in languagesDictionary.keys.sorted() {
             guard let displayName = locale.displayName(forKey: .identifier, value: identifier) else {
                 continue
             }

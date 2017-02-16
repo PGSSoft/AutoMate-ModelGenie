@@ -22,7 +22,7 @@ func generateCountries() {
         writer.append(line: "public enum SystemCountry: String {")
 
         writer.beginIndent()
-        for (key, value) in countriesDictionary {
+        for (key, value) in countriesDictionary.sorted(by: { $0.0.value < $0.1.value }) {
             let countryCodeRange = NSRange(location: 0, length: key.characters.count)
             guard countryCodeExpr.numberOfMatches(in: key, options: [], range: countryCodeRange) > 0 else { continue }
 

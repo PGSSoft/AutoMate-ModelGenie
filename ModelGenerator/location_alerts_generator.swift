@@ -56,7 +56,7 @@ func generateLocationAlerts() {
         writer.append(line: "import XCTest")
 
         let createAlertOptions: (NamedMessageCollection) -> Void = { dictionary in
-            for item in dictionary {
+            for item in dictionary.sorted(by: { $0.0.key < $0.1.key }) {
                 let messagesKey: String
                 switch item.key {
                 case "LocationAlertAllow": messagesKey = "allow"
@@ -84,8 +84,7 @@ func generateLocationAlerts() {
         }
 
         let createAlerts: (NamedMessageCollection) -> Void = { dictionary in
-            for item in dictionary {
-
+            for item in dictionary.sorted(by: { $0.0.key < $0.1.key }) {
                 let protocols: String
                 switch item.key {
                 case "LocationUpgradeWhenInUseAlwaysAlert": protocols = "LocationAlertAllow, LocationAlertCancel"
