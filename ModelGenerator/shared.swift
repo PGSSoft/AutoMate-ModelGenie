@@ -9,6 +9,8 @@
 import Foundation
 
 // MARK: - Other
+let sharedSwiftLintOptions = "// swiftlint:disable variable_name type_body_length trailing_comma file_length line_length"
+
 private let identifierRegex: NSRegularExpression = {
     let regex = "\\W+"
     guard let expr = try? NSRegularExpression(pattern: regex, options: []) else {

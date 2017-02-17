@@ -13,7 +13,7 @@ func generateLanguages() {
     let languagesDictionary = readStrings(fromPath: simulatorLanguagesPath)
 
     write(toFile: "SystemLanguage") { (writer) in
-        writer.append(line: "// swiftlint:disable type_body_length file_length line_length")
+        writer.append(line: sharedSwiftLintOptions)
         writer.append(line: "")
         writer.append(line: "/// Enumeration describing available languages in the system.")
         writer.append(line: "public enum SystemLanguage: String, LaunchArgumentValue {")

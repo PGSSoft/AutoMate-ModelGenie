@@ -45,7 +45,7 @@ func getKeyboards() -> [KeyboardData] {
 
 func writeKeyboardEnum(to name: String, variant: String, cases: [NameAndValue]) {
     write(toFile: name) { (writer) in
-        writer.append(line: "// swiftlint:disable type_body_length file_length line_length")
+        writer.append(line: sharedSwiftLintOptions)
         writer.append(line: "")
         writer.append(line: "/// Enumeration describing available \(variant) keyboards in the system.")
         writer.append(line: "public enum \(name): String, LaunchArgumentValue {")
