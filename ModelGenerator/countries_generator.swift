@@ -16,7 +16,7 @@ func generateCountries() {
     let countriesDictionary = readStrings(fromPath: simulatorCountriesPath)
 
     write(toFile: "SystemCountry") { (writer) in
-        writer.append(line: "// swiftlint:disable type_body_length")
+        writer.append(line: "// swiftlint:disable type_body_length file_length line_length")
         writer.append(line: "")
         writer.append(line: "/// Enumeration describing available country codes in the system.")
         writer.append(line: "public enum SystemCountry: String {")

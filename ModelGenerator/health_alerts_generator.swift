@@ -62,7 +62,7 @@ func generateHealthAlerts() {
 
     // Generate source code:
     write(toFile: "HealthAlerts") { (writer) in
-        writer.append(line:"// swiftlint:disable variable_name trailing_comma")
+        writer.append(line:"// swiftlint:disable variable_name trailing_comma file_length line_length")
         writer.append(line: "/// Represents possible health service messages and label values on buttons.")
         writer.append(line: "")
         writer.append(line: "import XCTest")

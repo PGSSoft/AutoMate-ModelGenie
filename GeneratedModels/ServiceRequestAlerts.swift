@@ -1,4 +1,4 @@
-// swiftlint:disable variable_name trailing_comma
+// swiftlint:disable variable_name trailing_comma file_length line_length
 /// Represents possible system service messages and label values on buttons.
 
 import XCTest
