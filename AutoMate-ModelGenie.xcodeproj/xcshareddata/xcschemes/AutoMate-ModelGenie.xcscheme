@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1F6648591D5D978700307AAB"
-               BuildableName = "ModelGenerator"
-               BlueprintName = "ModelGenerator"
-               ReferencedContainer = "container:ModelGenerator.xcodeproj">
+               BuildableName = "AutoMate-ModelGenie"
+               BlueprintName = "AutoMate-ModelGenie"
+               ReferencedContainer = "container:AutoMate-ModelGenie.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1F6648591D5D978700307AAB"
-            BuildableName = "ModelGenerator"
-            BlueprintName = "ModelGenerator"
-            ReferencedContainer = "container:ModelGenerator.xcodeproj">
+            BuildableName = "AutoMate-ModelGenie"
+            BlueprintName = "AutoMate-ModelGenie"
+            ReferencedContainer = "container:AutoMate-ModelGenie.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -61,9 +61,9 @@
                   <BuildableReference
                      BuildableIdentifier = "primary"
                      BlueprintIdentifier = "1F6648591D5D978700307AAB"
-                     BuildableName = "ModelGenerator"
-                     BlueprintName = "ModelGenerator"
-                     ReferencedContainer = "container:ModelGenerator.xcodeproj">
+                     BuildableName = "AutoMate-ModelGenie"
+                     BlueprintName = "AutoMate-ModelGenie"
+                     ReferencedContainer = "container:AutoMate-ModelGenie.xcodeproj">
                   </BuildableReference>
                </EnvironmentBuildable>
             </ActionContent>
@@ -74,9 +74,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1F6648591D5D978700307AAB"
-            BuildableName = "ModelGenerator"
-            BlueprintName = "ModelGenerator"
-            ReferencedContainer = "container:ModelGenerator.xcodeproj">
+            BuildableName = "AutoMate-ModelGenie"
+            BlueprintName = "AutoMate-ModelGenie"
+            ReferencedContainer = "container:AutoMate-ModelGenie.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -105,9 +105,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1F6648591D5D978700307AAB"
-            BuildableName = "ModelGenerator"
-            BlueprintName = "ModelGenerator"
-            ReferencedContainer = "container:ModelGenerator.xcodeproj">
+            BuildableName = "AutoMate-ModelGenie"
+            BlueprintName = "AutoMate-ModelGenie"
+            ReferencedContainer = "container:AutoMate-ModelGenie.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

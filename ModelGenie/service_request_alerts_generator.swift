@@ -1,6 +1,6 @@
 //
 //  service_request_alerts_generator.swift
-//  ModelGenerator
+//  ModelGenie
 //
 //  Created by Ewelina Cyło on 20/01/2017.
 //  Copyright © 2017 PGS Software S.A. All rights reserved.

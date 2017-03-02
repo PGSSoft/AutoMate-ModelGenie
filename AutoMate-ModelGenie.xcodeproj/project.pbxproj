@@ -31,7 +31,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1F66485A1D5D978700307AAB /* ModelGenerator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ModelGenerator; sourceTree = BUILT_PRODUCTS_DIR; };
+		1F66485A1D5D978700307AAB /* AutoMate-ModelGenie */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "AutoMate-ModelGenie"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F66485D1D5D978700307AAB /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		1F6648641D5D9C0300307AAB /* shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shared.swift; sourceTree = "<group>"; };
 		1F6648681D5D9D0500307AAB /* countries_generator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = countries_generator.swift; sourceTree = "<group>"; };
@@ -59,7 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				96BB6F421E52F47A00A74DA1 /* GeneratedModels */,
-				1F66485C1D5D978700307AAB /* ModelGenerator */,
+				1F66485C1D5D978700307AAB /* ModelGenie */,
 				1F66485B1D5D978700307AAB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,12 +67,12 @@
 		1F66485B1D5D978700307AAB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1F66485A1D5D978700307AAB /* ModelGenerator */,
+				1F66485A1D5D978700307AAB /* AutoMate-ModelGenie */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1F66485C1D5D978700307AAB /* ModelGenerator */ = {
+		1F66485C1D5D978700307AAB /* ModelGenie */ = {
 			isa = PBXGroup;
 			children = (
 				C9583BF01E4B28300098BB27 /* configuration.swift */,
@@ -85,15 +85,15 @@
 				C9583BD61E48A3C60098BB27 /* service_request_alerts_generator.swift */,
 				1F6648641D5D9C0300307AAB /* shared.swift */,
 			);
-			path = ModelGenerator;
+			path = ModelGenie;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1F6648591D5D978700307AAB /* ModelGenerator */ = {
+		1F6648591D5D978700307AAB /* AutoMate-ModelGenie */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1F6648611D5D978700307AAB /* Build configuration list for PBXNativeTarget "ModelGenerator" */;
+			buildConfigurationList = 1F6648611D5D978700307AAB /* Build configuration list for PBXNativeTarget "AutoMate-ModelGenie" */;
 			buildPhases = (
 				1F6648561D5D978700307AAB /* Sources */,
 				1F6648571D5D978700307AAB /* Frameworks */,
@@ -104,9 +104,9 @@
 			);
 			dependencies = (
 			);
-			name = ModelGenerator;
-			productName = ModelGenerator;
-			productReference = 1F66485A1D5D978700307AAB /* ModelGenerator */;
+			name = "AutoMate-ModelGenie";
+			productName = ModelGenie;
+			productReference = 1F66485A1D5D978700307AAB /* AutoMate-ModelGenie */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -125,7 +125,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1F6648551D5D978700307AAB /* Build configuration list for PBXProject "ModelGenerator" */;
+			buildConfigurationList = 1F6648551D5D978700307AAB /* Build configuration list for PBXProject "AutoMate-ModelGenie" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -137,7 +137,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1F6648591D5D978700307AAB /* ModelGenerator */,
+				1F6648591D5D978700307AAB /* AutoMate-ModelGenie */,
 			);
 		};
 /* End PBXProject section */
@@ -273,7 +273,7 @@
 					"$(inherited)",
 					"PROJECT_DIR=${PROJECT_DIR}",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/ModelGenerator/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/ModelGenie/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -282,7 +282,7 @@
 		1F6648631D5D978700307AAB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				INFOPLIST_FILE = "$(SRCROOT)/ModelGenerator/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/ModelGenie/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -291,7 +291,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1F6648551D5D978700307AAB /* Build configuration list for PBXProject "ModelGenerator" */ = {
+		1F6648551D5D978700307AAB /* Build configuration list for PBXProject "AutoMate-ModelGenie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1F66485F1D5D978700307AAB /* Debug */,
@@ -300,7 +300,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1F6648611D5D978700307AAB /* Build configuration list for PBXNativeTarget "ModelGenerator" */ = {
+		1F6648611D5D978700307AAB /* Build configuration list for PBXNativeTarget "AutoMate-ModelGenie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1F6648621D5D978700307AAB /* Debug */,

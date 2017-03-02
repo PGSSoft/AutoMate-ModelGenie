@@ -1,6 +1,6 @@
 //
 //  configuration.swift
-//  ModelGenerator
+//  ModelGenie
 //
 //  Created by Ewelina Cyło on 08/02/2017.
 //  Copyright © 2017 PGS Software S.A. All rights reserved.

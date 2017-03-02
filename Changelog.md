@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.0](https://github.com/PGSSoft/AutoMate-ModelGenerator/releases/tag/1.0.0)
+## [1.0.0](https://github.com/PGSSoft/AutoMate-ModelGenie/releases/tag/1.0.0)
 Released on ???.
 
 #### Added

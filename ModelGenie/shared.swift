@@ -1,6 +1,6 @@
 //
 //  Writer.swift
-//  ModelGenerator
+//  ModelGenie
 //
 //  Created by Pawel Szot on 12/08/16.
 //  Copyright © 2016 PSZOT. All rights reserved.

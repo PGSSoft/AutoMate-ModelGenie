@@ -1,6 +1,6 @@
 //
 //  health_alerts_generator.swift
-//  ModelGenerator
+//  ModelGenie
 //
 //  Created by Bartosz Janda on 15.02.2017.
 //  Copyright © 2017 PGS Software S.A. All rights reserved.
@@ -37,7 +37,7 @@ func generateHealthAlerts() {
                     key = "HealthAlertOk"
                     update(namedMessageCollection: &optionsDictionary, key: key, value: value)
                 case "%@_WOULD_LIKE_TO_ACCESS_YOUR_HEALTH_DATA":
-                    key = "HealthPermissionView"
+                    key = "HealthPermissionPage"
                     update(namedMessageCollection: &viewsDictionary, key: key, value: value)
                 case "AUTHORIZATION_DONT_ALLOW_ALERT_TITLE":
                     key = "HealthAuthorizationDontAllowAlert"

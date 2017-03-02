@@ -6,7 +6,7 @@
       <a href="https://github.com/PGSSoft/AutoMate">AutoMate</a> &bull;
       <a href="https://github.com/PGSSoft/AutoMate-AppBuddy">AppBuddy</a> &bull;
       <a href="https://github.com/PGSSoft/AutoMate-Templates">Templates</a> &bull;
-      <b>ModelGenerator</b>
+      <b>ModelGenie</b>
     </p>
 </div>
 
@@ -15,11 +15,11 @@
 `AutoMate` is a Swift framework containing a set of helpful `XCTest` extensions for writing UI automation tests. This Model Generator project is used internally to generate localized texts for privacy alerts, languages and countries settings.
 
 [![Swift 3.0](https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat)](https://swift.org)
-[![License](https://img.shields.io/github/license/PGSSoft/AutoMate-ModelGenerator.svg)](https://github.com/PGSSoft/AutoMate-ModelGenerator/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/PGSSoft/AutoMate-ModelGenie.svg)](https://github.com/PGSSoft/AutoMate-ModelGenie/blob/master/LICENSE)
 
 ## Usage
 
-Open the project and run `ModelGenerator` target. Created files can be found inside `GeneratedModels` folder. You have to manually move them to the [`AutoMate`](https://github.com/PGSSoft/AutoMate) repository under `AutoMate/Models` folder.
+Open the project and run `ModelGenie` target. Created files can be found inside `GeneratedModels` folder. You have to manually move them to the [`AutoMate`](https://github.com/PGSSoft/AutoMate) repository under `AutoMate/Models` folder.
 
 ## Features (or ToDo)
 
@@ -30,7 +30,7 @@ Open the project and run `ModelGenerator` target. Created files can be found ins
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at [https://github.com/PGSSoft/AutoMate-ModelGenerator](https://github.com/PGSSoft/AutoMate-ModelGenerator).
+Bug reports and pull requests are welcome on GitHub at [https://github.com/PGSSoft/AutoMate-ModelGenie](https://github.com/PGSSoft/AutoMate-ModelGenie).
 
 ## License
 
@@ -42,5 +42,5 @@ See our other [open-source projects](https://github.com/PGSSoft) or [contact us]
 
 ## Follow us
 
-[![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=https://github.com/PGSSoft/AutoMate-ModelGenerator)  
+[![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=https://github.com/PGSSoft/AutoMate-ModelGenie)  
 [![Twitter Follow](https://img.shields.io/twitter/follow/pgssoftware.svg?style=social&label=Follow)](https://twitter.com/pgssoftware)
