@@ -61,10 +61,19 @@ func generateServiceRequestAlerts() {
 
         let createAlertOptions: (NamedMessageCollection) -> Void = { dictionary in
             for item in dictionary.sorted(by: { $0.0.key < $0.1.key }) {
+                let messagesKey: String
+                switch item.key {
+                case "SystemAlertAllow": messagesKey = "allow"
+                case "SystemAlertDeny": messagesKey = "deny"
+                default: preconditionFailure("Not supported alert message key.")
+                }
+
                 writer.append(line: "")
                 writer.append(line: "extension \(item.key) {")
                 writer.beginIndent()
-                writer.append(line: "public static var \(item.key.lowercased().contains("allow") ? "allow" : "deny"): [String] {")
+                writer.append(line: "")
+                writer.append(line: "/// Represents all possible \"\(messagesKey)\" buttons in system service messages.")
+                writer.append(line: "public static var \(messagesKey): [String] {")
                 writer.beginIndent()
                 writer.append(line: "return [")
                 writer.beginIndent()
@@ -81,8 +90,11 @@ func generateServiceRequestAlerts() {
         let createAlerts: (NamedMessageCollection) -> Void = { dictionary in
             for item in dictionary.sorted(by: { $0.0.key < $0.1.key }) {
                 writer.append(line: "")
+                writer.append(line: "/// Represents \(item.key) service alert.")
                 writer.append(line: "public struct \(item.key): SystemAlert, SystemAlertAllow, SystemAlertDeny {")
                 writer.beginIndent()
+                writer.append(line: "")
+                writer.append(line: "/// Represents all possible messages in \(item.key) service alert.")
                 writer.append(line: "public static let messages = [")
                 writer.beginIndent()
                 item.value.sorted().forEach({ writer.append(line: "\"\($0)\",") })
@@ -90,10 +102,15 @@ func generateServiceRequestAlerts() {
                 writer.append(line: "]")
                 writer.finishIndent()
                 writer.beginIndent()
+                writer.append(line: "")
+                writer.append(line: "/// System service alert element.")
                 writer.append(line: "public var alert: XCUIElement")
                 writer.finishIndent()
                 writer.append(line: "")
                 writer.beginIndent()
+                writer.append(line: "/// Initialize \(item.key) with alert element.")
+                writer.append(line: "///")
+                writer.append(line: "/// - Parameter element: An alert element.")
                 writer.append(line: "public init?(element: XCUIElement) {")
                 writer.beginIndent()
                 writer.append(line: "guard let _ = element.staticTexts.elements(withLabelsLike: type(of: self).messages).first else {")
