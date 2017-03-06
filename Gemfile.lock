@@ -23,6 +23,8 @@ GEM
       kramdown (~> 1.5)
       octokit (~> 4.2)
       terminal-table (~> 1)
+    danger-swiftlint (0.3.0)
+      danger
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
     faraday-http-cache (1.3.1)
@@ -47,6 +49,7 @@ PLATFORMS
 
 DEPENDENCIES
   danger
+  danger-swiftlint
 
 BUNDLED WITH
-   1.14.5
+   1.14.6
