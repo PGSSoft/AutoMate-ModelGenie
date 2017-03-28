@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - Other
-let sharedSwiftLintOptions = "// swiftlint:disable variable_name type_body_length trailing_comma file_length line_length"
+let sharedSwiftLintOptions = "// swiftlint:disable identifier_name type_body_length trailing_comma file_length line_length"
 
 private let identifierRegex: NSRegularExpression = {
     let regex = "\\W+"
@@ -135,7 +135,7 @@ class Writer: CustomDebugStringConvertible {
     }
 
     var debugDescription: String {
-        guard let content = NSString(data: data as Data, encoding: String.Encoding.utf8.rawValue) as? String else {
+        guard let content = NSString(data: data as Data, encoding: String.Encoding.utf8.rawValue) as String? else {
             fatalError()
         }
         return "Writer content:\n" + content

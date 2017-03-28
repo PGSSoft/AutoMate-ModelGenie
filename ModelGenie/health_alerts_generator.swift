@@ -165,7 +165,7 @@ func generateHealthAlerts() {
                 writer.append(line: "/// - Parameter element: An alert element.")
                 writer.append(line: "public init?(element: XCUIElement) {")
                 writer.beginIndent()
-                writer.append(line: "guard let _ = element.staticTexts.elements(withLabelsLike: type(of: self).messages).first else {")
+                writer.append(line: "guard element.staticTexts.elements(withLabelsLike: type(of: self).messages).first != nil else {")
                 writer.beginIndent()
                 writer.append(line: "return nil")
                 writer.finishIndent()
