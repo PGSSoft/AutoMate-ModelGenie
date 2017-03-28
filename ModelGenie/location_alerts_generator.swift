@@ -48,6 +48,10 @@ func generateLocationAlerts() {
     findServices(alertsDictionary: &alertsDictionary,
                  optionsDictionary: &optionsDictionary)
 
+    // Generate JSON files.
+    writeToJson(collection: alertsDictionary, foriOS: Configuration.iOSVersion)
+    writeToJson(collection: optionsDictionary, foriOS: Configuration.iOSVersion)
+
     // Generate source code:
     write(toFile: "LocationAlerts") { (writer) in
         writer.append(line: sharedSwiftLintOptions)

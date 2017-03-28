@@ -80,17 +80,9 @@ extension String {
 
 // MARK: - Writer
 func write(toFile name: String, block: (_ writer: Writer) -> Void) {
-    func sourceDirectory() -> String {
-        guard let directory = ProcessInfo.processInfo.environment["SRCROOT"] else {
-            fatalError("Failed to determine source directory.")
-        }
-
-        return directory
-    }
-
     let writer = Writer()
     block(writer)
-    writer.write(to: "\(sourceDirectory())/\(outputDirectory)/\(name).swift")
+    writer.write(to: "\(Configuration.sourceDirectory)/\(Configuration.outputDirectory)/\(name).swift")
 }
 
 /// Helper for generating source code.
@@ -139,5 +131,33 @@ class Writer: CustomDebugStringConvertible {
             fatalError()
         }
         return "Writer content:\n" + content
+    }
+}
+
+// MARK: - JSON Writer
+func writeToJson(collection: NamedMessageCollection, foriOS version: String) {
+    for item in collection.sorted(by: { $0.0.key < $0.1.key }) {
+        let fileUrl = Configuration.sourceDirectoryUrl.appendingPathComponent(Configuration.outputDirectory).appendingPathComponent("\(item.key).json")
+        let sortedValues = item.value.sorted()
+
+        // Read existing file
+        var existingMessages = [String: [String]]()
+        if let data = try? Data(contentsOf: fileUrl), let messages = (try? JSONSerialization.jsonObject(with: data)) as? [String: [String]] {
+            existingMessages = messages
+        }
+
+        // Add new messages
+        existingMessages[version] = sortedValues
+
+        // Save file
+        if let data = try? JSONSerialization.data(withJSONObject: existingMessages, options: [.prettyPrinted]) {
+            do {
+                try data.write(to: fileUrl)
+                print("Saved to: \(fileUrl.absoluteString)")
+            } catch {
+                print("Cannot save to: \(fileUrl.absoluteString)")
+                fatalError(error.localizedDescription)
+            }
+        }
     }
 }

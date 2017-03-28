@@ -60,6 +60,11 @@ func generateHealthAlerts() {
         alertsDictionary: &alertsDictionary,
         optionsDictionary: &optionsDictionary)
 
+    // Generate JSON files.
+    writeToJson(collection: viewsDictionary, foriOS: Configuration.iOSVersion)
+    writeToJson(collection: alertsDictionary, foriOS: Configuration.iOSVersion)
+    writeToJson(collection: optionsDictionary, foriOS: Configuration.iOSVersion)
+
     // Generate source code:
     write(toFile: "HealthAlerts") { (writer) in
         writer.append(line: sharedSwiftLintOptions)

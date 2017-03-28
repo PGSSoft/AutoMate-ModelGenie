@@ -8,8 +8,6 @@
 
 import Foundation
 
-let outputDirectory = "GeneratedModels"
-
 generateCountries()
 generateKeyboards()
 generateLocationAlerts()

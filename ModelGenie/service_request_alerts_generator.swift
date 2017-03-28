@@ -52,6 +52,10 @@ func generateServiceRequestAlerts() {
     findServices(servicesDictionary: &alertsDictionary,
                  optionsDictionary: &optionsDictionary)
 
+    // Generate JSON files.
+    writeToJson(collection: alertsDictionary, foriOS: Configuration.iOSVersion)
+    writeToJson(collection: optionsDictionary, foriOS: Configuration.iOSVersion)
+
     // Generate source code:
     write(toFile: "ServiceRequestAlerts") { (writer) in
         writer.append(line: sharedSwiftLintOptions)
