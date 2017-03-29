@@ -123,7 +123,7 @@ func generateLocationAlerts() {
                 writer.beginIndent()
                 writer.append(line: "")
                 writer.append(line: "/// Represents all possible messages in `\(item.key)` service alert.")
-                writer.append(line: "public static let messages = readMessages(from: \"\(item.key)\")")
+                writer.append(line: "public static let messages = readMessages()")
                 writer.finishIndent()
                 writer.beginIndent()
                 writer.append(line: "")
