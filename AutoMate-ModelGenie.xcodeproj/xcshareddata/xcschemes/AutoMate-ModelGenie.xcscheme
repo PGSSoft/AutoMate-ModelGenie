@@ -56,7 +56,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Copy generated models"
-               scriptText = "SRC_DIR=&quot;${SRCROOT}/GeneratedModels&quot;&#10;MODELS_DST_DIR=&quot;${SRCROOT}/../pgs-automate-ios/AutoMate/Models&quot;&#10;MESSAGES_DST_DIR=&quot;${MODELS_DST_DIR}/Messages&quot;&#10;&#10;if [[ -d &quot;${SRC_DIR}&quot; &amp;&amp; -d &quot;${MODELS_DST_DIR}&quot; ]]; then&#10;    rsync -a &quot;${SRC_DIR}/&quot;*.swift &quot;${MODELS_DST_DIR}/&quot;&#10;    rsync -a &quot;${SRC_DIR}/&quot;*.json &quot;${MESSAGES_DST_DIR}/&quot;&#10;fi&#10;">
+               scriptText = "SRC_DIR=&quot;${SRCROOT}/GeneratedModels&quot;&#10;DST_DIR=&quot;${SRCROOT}/../pgs-automate-ios/AutoMate/Models&quot;&#10;&#10;if [[ -d &quot;${SRC_DIR}&quot; &amp;&amp; -d &quot;${DST_DIR}&quot; ]]; then&#10;    rsync -a &quot;${SRC_DIR}/&quot; &quot;${DST_DIR}/&quot;&#10;fi&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

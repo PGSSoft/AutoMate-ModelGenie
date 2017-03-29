@@ -137,12 +137,17 @@ class Writer: CustomDebugStringConvertible {
 // MARK: - JSON Writer
 func writeToJson(collection: NamedMessageCollection, foriOS version: String) {
     for item in collection.sorted(by: { $0.0.key < $0.1.key }) {
-        let fileUrl = Configuration.sourceDirectoryUrl.appendingPathComponent(Configuration.outputDirectory).appendingPathComponent("\(item.key).json")
+        let fileUrl = Configuration.sourceDirectoryUrl
+            .appendingPathComponent(Configuration.outputDirectory)
+            .appendingPathComponent("Messages")
+            .appendingPathComponent("\(item.key).json")
         let sortedValues = item.value.sorted()
 
         // Read existing file
         var existingMessages = [String: [String]]()
-        if let data = try? Data(contentsOf: fileUrl), let messages = (try? JSONSerialization.jsonObject(with: data)) as? [String: [String]] {
+        if let data = try? Data(contentsOf: fileUrl),
+            let json = try? JSONSerialization.jsonObject(with: data),
+            let messages = json as? [String: [String]] {
             existingMessages = messages
         }
 
