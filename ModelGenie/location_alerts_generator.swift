@@ -58,6 +58,7 @@ func generateLocationAlerts() {
         writer.append(line: "/// Represents possible location service messages and label values on buttons.")
         writer.append(line: "")
         writer.append(line: "import XCTest")
+        writer.append(line: "#if os(iOS)")
 
         let createAlertOptions: (NamedMessageCollection) -> Void = { dictionary in
             for item in dictionary.sorted(by: { $0.0.key < $0.1.key }) {
@@ -155,5 +156,7 @@ func generateLocationAlerts() {
         createAlertOptions(optionsDictionary)
         // Creates structure for alerts:
         createAlerts(alertsDictionary)
+
+        writer.append(line: "#endif")
     }
 }

@@ -62,6 +62,7 @@ func generateServiceRequestAlerts() {
         writer.append(line: "/// Represents possible system service messages and label values on buttons.")
         writer.append(line: "")
         writer.append(line: "import XCTest")
+        writer.append(line: "#if os(iOS)")
 
         let createAlertOptions: (NamedMessageCollection) -> Void = { dictionary in
             for item in dictionary.sorted(by: { $0.0.key < $0.1.key }) {
@@ -151,5 +152,7 @@ func generateServiceRequestAlerts() {
         createAlertOptions(optionsDictionary)
         // Creates structure for alerts:
         createAlerts(alertsDictionary)
+
+        writer.append(line: "#endif")
     }
 }
