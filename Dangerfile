@@ -13,3 +13,8 @@ warn("Big PR") if git.lines_of_code > 500
 
 # Run Swiftlint
 swiftlint.lint_files
+
+# Warn in PR comment about the conflict between PRs
+if danger.scm_provider == :github
+  conflict_checker.check_conflict_and_comment
+end
