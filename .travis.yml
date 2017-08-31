@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode8.3
+osx_image: xcode9
 
 env:
   - NSUnbufferedIO=YES
@@ -9,4 +9,4 @@ before_install:
   - brew outdated swiftlint || brew upgrade swiftlint
 
 script:
-  - bundle exec danger
+  - bundle exec dangers
