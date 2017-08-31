@@ -9,4 +9,4 @@ before_install:
   - brew outdated swiftlint || brew upgrade swiftlint
 
 script:
-  - bundle exec dangers
+  - bundle exec danger
