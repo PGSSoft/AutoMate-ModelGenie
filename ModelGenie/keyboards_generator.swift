@@ -10,7 +10,7 @@ func getKeyboards() -> [KeyboardData] {
 
     let enUSLocale = NSLocale(localeIdentifier: "en_US")
 
-    let simulatorKeyboardsPath = Configuration.developerDirectory + "/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/TextInput/"
+    let simulatorKeyboardsPath = Configuration.developerDirectory + "/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/TextInput/"
 
     guard let content = try? fileManager.contentsOfDirectory(atPath: simulatorKeyboardsPath) else {
         preconditionFailure("Couldn't find directory")
@@ -64,7 +64,7 @@ func writeKeyboardEnum(to name: String, variant: String, cases: [NameAndValue]) 
 }
 
 func generateKeyboards() {
-    let keyboards = getKeyboards().sorted { $0.0.name < $0.1.name }
+    let keyboards = getKeyboards().sorted { $0.name < $1.name }
     var softwareKeyboards = [NameAndValue]()
     var hardwareKeyboards = [NameAndValue]()
     for item in keyboards {

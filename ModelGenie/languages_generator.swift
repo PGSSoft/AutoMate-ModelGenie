@@ -8,7 +8,7 @@ func generateLanguages() {
         preconditionFailure("Couldn't initialize expression with given pattern")
     }
 
-    let simulatorLanguagesPath = Configuration.developerDirectory + "/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/PrivateFrameworks/IntlPreferences.framework/Language.strings"
+    let simulatorLanguagesPath = Configuration.developerDirectory + "/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/IntlPreferences.framework/Language.strings"
 
     let languagesDictionary = readStrings(fromPath: simulatorLanguagesPath)
 

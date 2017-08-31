@@ -11,7 +11,7 @@ func generateCountries() {
         preconditionFailure("Couldn't initialize expression with given pattern")
     }
 
-    let simulatorCountriesPath = Configuration.developerDirectory + "/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/PrivateFrameworks/AppSupport.framework/English.lproj/Localizable_Countries.strings"
+    let simulatorCountriesPath = Configuration.developerDirectory + "/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/AppSupport.framework/English.lproj/Localizable_Countries.strings"
 
     let countriesDictionary = readStrings(fromPath: simulatorCountriesPath)
 
@@ -22,7 +22,7 @@ func generateCountries() {
         writer.append(line: "public enum SystemCountry: String {")
 
         writer.beginIndent()
-        for (key, value) in countriesDictionary.sorted(by: { $0.0.value < $0.1.value }) {
+        for (key, value) in countriesDictionary.sorted(by: { $0.value < $1.value }) {
             let countryCodeRange = NSRange(location: 0, length: key.characters.count)
             guard countryCodeExpr.numberOfMatches(in: key, options: [], range: countryCodeRange) > 0 else { continue }
 

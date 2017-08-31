@@ -10,7 +10,7 @@ import Foundation
 
 // swiftlint:disable:next function_body_length
 func generateHealthAlerts() {
-    let healthKitPath = Configuration.developerDirectory + "/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/PrivateFrameworks/HealthUI.framework"
+    let healthKitPath = Configuration.developerDirectory + "/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/HealthUI.framework"
 
     /// Iterates recursively throught directory content
     // swiftlint:disable:next function_body_length cyclomatic_complexity
@@ -74,7 +74,7 @@ func generateHealthAlerts() {
         writer.append(line: "#if os(iOS)")
 
         let createAlertOptions: (NamedMessageCollection) -> Void = { dictionary in
-            for item in dictionary.sorted(by: { $0.0.key < $0.1.key }) {
+            for item in dictionary.sorted(by: { $0.key < $1.key }) {
                 let messagesKey: String
                 switch item.key {
                 case "HealthAlertAllow": messagesKey = "allow"
@@ -101,7 +101,7 @@ func generateHealthAlerts() {
         }
 
         let createViews: (NamedMessageCollection) -> Void = { dictionary in
-            for item in dictionary.sorted(by: { $0.0.key < $0.1.key }) {
+            for item in dictionary.sorted(by: { $0.key < $1.key }) {
                 writer.append(line: "")
                 writer.append(line: "extension \(item.key) {")
                 writer.beginIndent()
@@ -118,7 +118,7 @@ func generateHealthAlerts() {
         }
 
         let createAlerts: (NamedMessageCollection) -> Void = { dictionary in
-            for item in dictionary.sorted(by: { $0.0.key < $0.1.key }) {
+            for item in dictionary.sorted(by: { $0.key < $1.key }) {
                 writer.append(line: "")
                 writer.append(line: "/// Represents `\(item.key)` service alert.")
                 writer.append(line: "///")

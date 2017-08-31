@@ -10,7 +10,7 @@ import Foundation
 
 // swiftlint:disable:next function_body_length
 func generateServiceRequestAlerts() {
-    let serviceAlertsPath = Configuration.developerDirectory + "/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/PrivateFrameworks/TCC.framework"
+    let serviceAlertsPath = Configuration.developerDirectory + "/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/TCC.framework"
 
     /// Iterates recursively throught directory content
     func findServices(servicesDictionary: inout NamedMessageCollection, optionsDictionary: inout NamedMessageCollection) {
@@ -65,7 +65,7 @@ func generateServiceRequestAlerts() {
         writer.append(line: "#if os(iOS)")
 
         let createAlertOptions: (NamedMessageCollection) -> Void = { dictionary in
-            for item in dictionary.sorted(by: { $0.0.key < $0.1.key }) {
+            for item in dictionary.sorted(by: { $0.key < $1.key }) {
                 let messagesKey: String
                 switch item.key {
                 case "SystemAlertAllow": messagesKey = "allow"
@@ -89,7 +89,7 @@ func generateServiceRequestAlerts() {
         }
 
         let createAlerts: (NamedMessageCollection) -> Void = { dictionary in
-            for item in dictionary.sorted(by: { $0.0.key < $0.1.key }) {
+            for item in dictionary.sorted(by: { $0.key < $1.key }) {
                 writer.append(line: "")
                 writer.append(line: "/// Represents `\(item.key)` service alert.")
                 writer.append(line: "///")

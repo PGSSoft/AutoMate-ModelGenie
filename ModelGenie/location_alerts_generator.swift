@@ -2,7 +2,7 @@ import Foundation
 
 // swiftlint:disable:next function_body_length
 func generateLocationAlerts() {
-    let coreLocationPath = Configuration.developerDirectory + "/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/System/Library/Frameworks/CoreLocation.framework"
+    let coreLocationPath = Configuration.developerDirectory + "/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/Frameworks/CoreLocation.framework"
 
     /// Iterates recursively throught directory content
     func findServices(alertsDictionary: inout NamedMessageCollection, optionsDictionary: inout NamedMessageCollection) {
@@ -61,7 +61,7 @@ func generateLocationAlerts() {
         writer.append(line: "#if os(iOS)")
 
         let createAlertOptions: (NamedMessageCollection) -> Void = { dictionary in
-            for item in dictionary.sorted(by: { $0.0.key < $0.1.key }) {
+            for item in dictionary.sorted(by: { $0.key < $1.key }) {
                 let messagesKey: String
                 switch item.key {
                 case "LocationAlertAllow": messagesKey = "allow"
@@ -87,7 +87,7 @@ func generateLocationAlerts() {
         }
 
         let createAlerts: (NamedMessageCollection) -> Void = { dictionary in
-            for item in dictionary.sorted(by: { $0.0.key < $0.1.key }) {
+            for item in dictionary.sorted(by: { $0.key < $1.key }) {
                 let protocols: String
                 switch item.key {
                 case "LocationUpgradeWhenInUseAlwaysAlert": protocols = "LocationAlertAllow, LocationAlertCancel"

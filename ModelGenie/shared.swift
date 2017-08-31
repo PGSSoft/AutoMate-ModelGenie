@@ -136,7 +136,7 @@ class Writer: CustomDebugStringConvertible {
 
 // MARK: - JSON Writer
 func writeToJson(collection: NamedMessageCollection, foriOS version: String) {
-    for item in collection.sorted(by: { $0.0.key < $0.1.key }) {
+    for item in collection.sorted(by: { $0.key < $1.key }) {
         let fileUrl = Configuration.sourceDirectoryUrl
             .appendingPathComponent(Configuration.outputDirectory)
             .appendingPathComponent("Messages")
