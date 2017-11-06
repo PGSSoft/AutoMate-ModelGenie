@@ -31,6 +31,7 @@ extension LocationAlertDeny {
 extension LocationAlertOk {
 
     /// Represents all possible "ok" buttons in location service messages.
+    // 
     public static var ok: [String] {
         return readMessages(from: "LocationAlertOk")
     }

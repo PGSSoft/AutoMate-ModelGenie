@@ -20,7 +20,7 @@ private let identifierRegex: NSRegularExpression = {
 }()
 
 func asIdentifier(_ input: String) -> String {
-    let range = NSRange(location: 0, length: input.characters.count)
+    let range = NSRange(location: 0, length: input.count)
     return identifierRegex.stringByReplacingMatches(in: input, options: [], range: range, withTemplate: "")
 }
 

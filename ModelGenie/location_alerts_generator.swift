@@ -1,5 +1,6 @@
 import Foundation
 
+// swiftlint:disable cyclomatic_complexity
 // swiftlint:disable:next function_body_length
 func generateLocationAlerts() {
     let coreLocationPath = Configuration.developerDirectory + "/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/Frameworks/CoreLocation.framework"

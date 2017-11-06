@@ -23,7 +23,7 @@ func generateLanguages() {
             guard let displayName = locale.displayName(forKey: .identifier, value: identifier) else {
                 continue
             }
-            let range = NSRange(location: 0, length: displayName.characters.count)
+            let range = NSRange(location: 0, length: displayName.count)
             let caseName = expr.stringByReplacingMatches(in: displayName, options: [], range: range, withTemplate: "")
             writer.append(line: "")
             writer.append(line: "/// Automatically generated value for language \(caseName).")

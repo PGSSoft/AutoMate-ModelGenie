@@ -23,10 +23,10 @@ func generateCountries() {
 
         writer.beginIndent()
         for (key, value) in countriesDictionary.sorted(by: { $0.value < $1.value }) {
-            let countryCodeRange = NSRange(location: 0, length: key.characters.count)
+            let countryCodeRange = NSRange(location: 0, length: key.count)
             guard countryCodeExpr.numberOfMatches(in: key, options: [], range: countryCodeRange) > 0 else { continue }
 
-            let range = NSRange(location: 0, length: value.characters.count)
+            let range = NSRange(location: 0, length: value.count)
             let caseName = expr.stringByReplacingMatches(in: value, options: [], range: range, withTemplate: "")
 
             writer.append(line: "")
