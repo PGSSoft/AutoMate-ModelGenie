@@ -33,6 +33,12 @@ func generateLocationAlerts() {
                 case "LOCATION_CLIENT_PERMISSION_UPGRADE_WHENINUSE_ALWAYS":
                     key = "LocationUpgradeWhenInUseAlwaysAlert"
                     update(namedMessageCollection: &alertsDictionary, key: key, value: value)
+                case "LOCATION_CLIENT_PERMISSION_ALWAYS_BUTTON":
+                    key = "LocationAlwaysAlertAllow"
+                    update(namedMessageCollection: &optionsDictionary, key: key, value: value)
+                case "LOCATION_CLIENT_PERMISSION_WHENINUSE_BUTTON":
+                    key = "LocationAlwaysAlertAllowWhenInUseOnly"
+                    update(namedMessageCollection: &optionsDictionary, key: key, value: value)
                 default: ()
                 }
             }
@@ -68,6 +74,8 @@ func generateLocationAlerts() {
                 case "LocationAlertDeny": messagesKey = "deny"
                 case "LocationAlertOk": messagesKey = "ok"
                 case "LocationAlertCancel": messagesKey = "cancel"
+                case "LocationAlwaysAlertAllow": messagesKey = "allow"
+                case "LocationAlwaysAlertAllowWhenInUseOnly": messagesKey = "cancel"
                 default: preconditionFailure("Not supported alert message key.")
                 }
 
@@ -90,7 +98,8 @@ func generateLocationAlerts() {
             for item in dictionary.sorted(by: { $0.key < $1.key }) {
                 let protocols: String
                 switch item.key {
-                case "LocationUpgradeWhenInUseAlwaysAlert": protocols = "LocationAlertAllow, LocationAlertCancel"
+                case "LocationUpgradeWhenInUseAlwaysAlert": protocols = "LocationAlwaysAlertAllow, LocationAlwaysAlertAllowWhenInUseOnly"
+                case "LocationAlwaysAlert": protocols = "LocationAlwaysAlertAllow, LocationAlwaysAlertAllowWhenInUseOnly, LocationAlertDeny"
                 default: protocols = "LocationAlertAllow, LocationAlertDeny"
                 }
 
