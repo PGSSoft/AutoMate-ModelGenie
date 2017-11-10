@@ -9,3 +9,6 @@ excluded:
 variable_name:
   excluded:
     - ok
+
+disabled_rules:
+  - superfluous_disable_command
