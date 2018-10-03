@@ -1,4 +1,4 @@
-ios.prepareEnv(xcode: "/Applications/Xcode_9.1.app")
+ios.prepareEnv(xcode: "/Applications/Xcode_10.0.app")
 
 node("ios") {
   timeout(45) {

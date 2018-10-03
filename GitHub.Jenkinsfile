@@ -1,4 +1,4 @@
-ios.prepareEnv(xcode: "/Applications/Xcode_9.1.app", danger_bitbucket: null)
+ios.prepareEnv(xcode: "/Applications/Xcode_10.0.app", danger_bitbucket: null)
 
 node("ios") {
   timeout(45) {

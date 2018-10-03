@@ -14,7 +14,7 @@
 
 [`AutoMate`](https://github.com/PGSSoft/AutoMate) is a Swift framework containing a set of helpful `XCTest` extensions for writing UI automation tests. This Model Generator project is used internally to generate localized texts for privacy alerts, languages and countries settings.
 
-[![Swift 4.0](https://img.shields.io/badge/Swift-4.0-orange.svg?style=flat)](https://swift.org)
+[![Swift 4.2](https://img.shields.io/badge/Swift-4.2-orange.svg?style=flat)](https://swift.org)
 [![License](https://img.shields.io/github/license/PGSSoft/AutoMate-ModelGenie.svg)](https://github.com/PGSSoft/AutoMate-ModelGenie/blob/master/LICENSE)
 
 ## Usage
