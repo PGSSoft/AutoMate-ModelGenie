@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.0](https://github.com/PGSSoft/AutoMate-ModelGenie/releases/tag/1.3.0)
+Released on 2018-10-21.
+
+#### Added
+- Compatibility with Xcode 10.0 and Swift 4.2.
+
 ## [1.2.0](https://github.com/PGSSoft/AutoMate-ModelGenie/releases/tag/1.2.0)
 Released on 2017-11-14.
 
