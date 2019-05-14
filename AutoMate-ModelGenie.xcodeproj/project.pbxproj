@@ -121,16 +121,17 @@
 				TargetAttributes = {
 					1F6648591D5D978700307AAB = {
 						CreatedOnToolsVersion = 7.3;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
 			buildConfigurationList = 1F6648551D5D978700307AAB /* Build configuration list for PBXProject "AutoMate-ModelGenie" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 1F6648511D5D978700307AAB;
 			productRefGroup = 1F66485B1D5D978700307AAB /* Products */;
@@ -293,8 +294,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/ModelGenie/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -303,8 +303,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = "$(SRCROOT)/ModelGenie/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
