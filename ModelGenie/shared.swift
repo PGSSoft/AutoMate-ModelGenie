@@ -155,7 +155,7 @@ func writeToJson(collection: NamedMessageCollection, foriOS version: String) {
         existingMessages[version] = sortedValues
 
         // Save file
-        if let data = try? JSONSerialization.data(withJSONObject: existingMessages, options: [.prettyPrinted]) {
+        if let data = try? JSONSerialization.data(withJSONObject: existingMessages, options: [.prettyPrinted, .sortedKeys]) {
             do {
                 try data.write(to: fileUrl)
                 print("Saved to: \(fileUrl.absoluteString)")
