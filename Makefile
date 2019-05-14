@@ -1,4 +1,4 @@
-.PHONY: docs push_github
+.PHONY: push_github
 
 # Push master, develop and tags to GitHub
 push_github:
