@@ -3,10 +3,9 @@ line_length:
   error: 400
 
 excluded:
-  # Workaround for issue https://github.com/realm/SwiftLint/issues/1399
-  - GeneratedModels/SystemCountry.swift
+  - vendor
 
-variable_name:
+identifier_name:
   excluded:
     - ok
 
