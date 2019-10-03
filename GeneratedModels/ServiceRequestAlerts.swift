@@ -65,6 +65,51 @@ public struct AddressBookAlert: SystemAlert, SystemAlertAllow, SystemAlertDeny {
     }
 }
 
+/// Represents `BluetoothAlwaysAlert` service alert.
+///
+/// System alert supposed to be used in the handler of the `XCTestCase.addUIInterruptionMonitor(withDescription:handler:)` method.
+///
+/// **Example:**
+///
+/// ```swift
+/// let token = addUIInterruptionMonitor(withDescription: "Alert") { (alert) -> Bool in
+///     guard let alert = BluetoothAlwaysAlert(element: alert) else {
+///         XCTFail("Cannot create BluetoothAlwaysAlert object")
+///         return false
+///     }
+///
+///     alert.denyElement.tap()
+///     return true
+/// }
+///
+/// mainPage.goToPermissionsPageMenu()
+/// // Interruption won't happen without some kind of action.
+/// app.tap()
+/// removeUIInterruptionMonitor(token)
+/// ```
+///
+/// - note:
+/// Handlers should return `true` if they handled the UI, `false` if they did not.
+public struct BluetoothAlwaysAlert: SystemAlert, SystemAlertAllow, SystemAlertDeny {
+
+    /// Represents all possible messages in `BluetoothAlwaysAlert` service alert.
+    public static let messages = readMessages()
+
+    /// System service alert element.
+    public var alert: XCUIElement
+
+    /// Initialize `BluetoothAlwaysAlert` with alert element.
+    ///
+    /// - Parameter element: An alert element.
+    public init?(element: XCUIElement) {
+        guard element.staticTexts.elements(withLabelsLike: type(of: self).messages).first != nil else {
+            return nil
+        }
+
+        self.alert = element
+    }
+}
+
 /// Represents `BluetoothPeripheralAlert` service alert.
 ///
 /// System alert supposed to be used in the handler of the `XCTestCase.addUIInterruptionMonitor(withDescription:handler:)` method.
@@ -99,6 +144,51 @@ public struct BluetoothPeripheralAlert: SystemAlert, SystemAlertAllow, SystemAle
     public var alert: XCUIElement
 
     /// Initialize `BluetoothPeripheralAlert` with alert element.
+    ///
+    /// - Parameter element: An alert element.
+    public init?(element: XCUIElement) {
+        guard element.staticTexts.elements(withLabelsLike: type(of: self).messages).first != nil else {
+            return nil
+        }
+
+        self.alert = element
+    }
+}
+
+/// Represents `BluetoothWhileInUseAlert` service alert.
+///
+/// System alert supposed to be used in the handler of the `XCTestCase.addUIInterruptionMonitor(withDescription:handler:)` method.
+///
+/// **Example:**
+///
+/// ```swift
+/// let token = addUIInterruptionMonitor(withDescription: "Alert") { (alert) -> Bool in
+///     guard let alert = BluetoothWhileInUseAlert(element: alert) else {
+///         XCTFail("Cannot create BluetoothWhileInUseAlert object")
+///         return false
+///     }
+///
+///     alert.denyElement.tap()
+///     return true
+/// }
+///
+/// mainPage.goToPermissionsPageMenu()
+/// // Interruption won't happen without some kind of action.
+/// app.tap()
+/// removeUIInterruptionMonitor(token)
+/// ```
+///
+/// - note:
+/// Handlers should return `true` if they handled the UI, `false` if they did not.
+public struct BluetoothWhileInUseAlert: SystemAlert, SystemAlertAllow, SystemAlertDeny {
+
+    /// Represents all possible messages in `BluetoothWhileInUseAlert` service alert.
+    public static let messages = readMessages()
+
+    /// System service alert element.
+    public var alert: XCUIElement
+
+    /// Initialize `BluetoothWhileInUseAlert` with alert element.
     ///
     /// - Parameter element: An alert element.
     public init?(element: XCUIElement) {
@@ -234,6 +324,141 @@ public struct CameraAlert: SystemAlert, SystemAlertAllow, SystemAlertDeny {
     public var alert: XCUIElement
 
     /// Initialize `CameraAlert` with alert element.
+    ///
+    /// - Parameter element: An alert element.
+    public init?(element: XCUIElement) {
+        guard element.staticTexts.elements(withLabelsLike: type(of: self).messages).first != nil else {
+            return nil
+        }
+
+        self.alert = element
+    }
+}
+
+/// Represents `ContactsFullAlert` service alert.
+///
+/// System alert supposed to be used in the handler of the `XCTestCase.addUIInterruptionMonitor(withDescription:handler:)` method.
+///
+/// **Example:**
+///
+/// ```swift
+/// let token = addUIInterruptionMonitor(withDescription: "Alert") { (alert) -> Bool in
+///     guard let alert = ContactsFullAlert(element: alert) else {
+///         XCTFail("Cannot create ContactsFullAlert object")
+///         return false
+///     }
+///
+///     alert.denyElement.tap()
+///     return true
+/// }
+///
+/// mainPage.goToPermissionsPageMenu()
+/// // Interruption won't happen without some kind of action.
+/// app.tap()
+/// removeUIInterruptionMonitor(token)
+/// ```
+///
+/// - note:
+/// Handlers should return `true` if they handled the UI, `false` if they did not.
+public struct ContactsFullAlert: SystemAlert, SystemAlertAllow, SystemAlertDeny {
+
+    /// Represents all possible messages in `ContactsFullAlert` service alert.
+    public static let messages = readMessages()
+
+    /// System service alert element.
+    public var alert: XCUIElement
+
+    /// Initialize `ContactsFullAlert` with alert element.
+    ///
+    /// - Parameter element: An alert element.
+    public init?(element: XCUIElement) {
+        guard element.staticTexts.elements(withLabelsLike: type(of: self).messages).first != nil else {
+            return nil
+        }
+
+        self.alert = element
+    }
+}
+
+/// Represents `ContactsLimitedAlert` service alert.
+///
+/// System alert supposed to be used in the handler of the `XCTestCase.addUIInterruptionMonitor(withDescription:handler:)` method.
+///
+/// **Example:**
+///
+/// ```swift
+/// let token = addUIInterruptionMonitor(withDescription: "Alert") { (alert) -> Bool in
+///     guard let alert = ContactsLimitedAlert(element: alert) else {
+///         XCTFail("Cannot create ContactsLimitedAlert object")
+///         return false
+///     }
+///
+///     alert.denyElement.tap()
+///     return true
+/// }
+///
+/// mainPage.goToPermissionsPageMenu()
+/// // Interruption won't happen without some kind of action.
+/// app.tap()
+/// removeUIInterruptionMonitor(token)
+/// ```
+///
+/// - note:
+/// Handlers should return `true` if they handled the UI, `false` if they did not.
+public struct ContactsLimitedAlert: SystemAlert, SystemAlertAllow, SystemAlertDeny {
+
+    /// Represents all possible messages in `ContactsLimitedAlert` service alert.
+    public static let messages = readMessages()
+
+    /// System service alert element.
+    public var alert: XCUIElement
+
+    /// Initialize `ContactsLimitedAlert` with alert element.
+    ///
+    /// - Parameter element: An alert element.
+    public init?(element: XCUIElement) {
+        guard element.staticTexts.elements(withLabelsLike: type(of: self).messages).first != nil else {
+            return nil
+        }
+
+        self.alert = element
+    }
+}
+
+/// Represents `DefaultPurposeBluetoothAlwaysAlert` service alert.
+///
+/// System alert supposed to be used in the handler of the `XCTestCase.addUIInterruptionMonitor(withDescription:handler:)` method.
+///
+/// **Example:**
+///
+/// ```swift
+/// let token = addUIInterruptionMonitor(withDescription: "Alert") { (alert) -> Bool in
+///     guard let alert = DefaultPurposeBluetoothAlwaysAlert(element: alert) else {
+///         XCTFail("Cannot create DefaultPurposeBluetoothAlwaysAlert object")
+///         return false
+///     }
+///
+///     alert.denyElement.tap()
+///     return true
+/// }
+///
+/// mainPage.goToPermissionsPageMenu()
+/// // Interruption won't happen without some kind of action.
+/// app.tap()
+/// removeUIInterruptionMonitor(token)
+/// ```
+///
+/// - note:
+/// Handlers should return `true` if they handled the UI, `false` if they did not.
+public struct DefaultPurposeBluetoothAlwaysAlert: SystemAlert, SystemAlertAllow, SystemAlertDeny {
+
+    /// Represents all possible messages in `DefaultPurposeBluetoothAlwaysAlert` service alert.
+    public static let messages = readMessages()
+
+    /// System service alert element.
+    public var alert: XCUIElement
+
+    /// Initialize `DefaultPurposeBluetoothAlwaysAlert` with alert element.
     ///
     /// - Parameter element: An alert element.
     public init?(element: XCUIElement) {

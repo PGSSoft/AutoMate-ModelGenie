@@ -141,8 +141,8 @@ public enum SystemCountry: String {
     /// Automatically generated value for country Chile.
     case Chile = "CL"
 
-    /// Automatically generated value for country China.
-    case China = "CN"
+    /// Automatically generated value for country Chinamainland.
+    case Chinamainland = "CN"
 
     /// Automatically generated value for country ChristmasIsland.
     case ChristmasIsland = "CX"
@@ -179,6 +179,9 @@ public enum SystemCountry: String {
 
     /// Automatically generated value for country CzechRepublic.
     case CzechRepublic = "CZ"
+
+    /// Automatically generated value for country CôtedIvoire.
+    case CôtedIvoire = "CI"
 
     /// Automatically generated value for country DemocraticRepublicoftheCongo.
     case DemocraticRepublicoftheCongo = "CD"
@@ -300,8 +303,8 @@ public enum SystemCountry: String {
     /// Automatically generated value for country Honduras.
     case Honduras = "HN"
 
-    /// Automatically generated value for country HongKong.
-    case HongKong = "HK"
+    /// Automatically generated value for country HongKongSARChina.
+    case HongKongSARChina = "HK"
 
     /// Automatically generated value for country Hungary.
     case Hungary = "HU"
@@ -332,9 +335,6 @@ public enum SystemCountry: String {
 
     /// Automatically generated value for country Italy.
     case Italy = "IT"
-
-    /// Automatically generated value for country IvoryCoast.
-    case IvoryCoast = "CI"
 
     /// Automatically generated value for country Jamaica.
     case Jamaica = "JM"
@@ -387,11 +387,8 @@ public enum SystemCountry: String {
     /// Automatically generated value for country Luxembourg.
     case Luxembourg = "LU"
 
-    /// Automatically generated value for country Macau.
-    case Macau = "MO"
-
-    /// Automatically generated value for country Macedonia.
-    case Macedonia = "MK"
+    /// Automatically generated value for country MacauSARChina.
+    case MacauSARChina = "MO"
 
     /// Automatically generated value for country Madagascar.
     case Madagascar = "MG"
@@ -488,6 +485,9 @@ public enum SystemCountry: String {
 
     /// Automatically generated value for country NorthKorea.
     case NorthKorea = "KP"
+
+    /// Automatically generated value for country NorthMacedonia.
+    case NorthMacedonia = "MK"
 
     /// Automatically generated value for country NorthernMarianaIslands.
     case NorthernMarianaIslands = "MP"

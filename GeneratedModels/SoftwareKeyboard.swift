@@ -3,11 +3,17 @@
 /// Enumeration describing available software keyboards in the system.
 public enum SoftwareKeyboard: String, LaunchArgumentValue {
 
+    /// Automatically generated value for software keyboard Albanian.
+    case Albanian = "sq@sw=QWERTZ-Albanian"
+
     /// Automatically generated value for software keyboard Arabic.
     case Arabic = "ar@sw=Arabic"
 
     /// Automatically generated value for software keyboard Armenian.
     case Armenian = "hy@sw=Armenian"
+
+    /// Automatically generated value for software keyboard Assamese.
+    case Assamese = "as@sw=Assamese"
 
     /// Automatically generated value for software keyboard AzerbaijaniLatin.
     case AzerbaijaniLatin = "az_Latn@sw=QWERTY-Azeri"
@@ -18,17 +24,38 @@ public enum SoftwareKeyboard: String, LaunchArgumentValue {
     /// Automatically generated value for software keyboard Belarusian.
     case Belarusian = "be@sw=Belarusian"
 
+    /// Automatically generated value for software keyboard Bodo.
+    case Bodo = "brx@sw=Devanagari-Hindi"
+
     /// Automatically generated value for software keyboard BulgarianBulgaria.
     case BulgarianBulgaria = "bg_BG@sw=Bulgarian"
+
+    /// Automatically generated value for software keyboard Burmese.
+    case Burmese = "my@sw=Burmese"
+
+    /// Automatically generated value for software keyboard CantoneseTraditionalCANGJIE.
+    case CantoneseTraditionalCANGJIE = "yue_Hant-Cangjie@sw=Cangjie"
+
+    /// Automatically generated value for software keyboard CantoneseTraditionalHWR.
+    case CantoneseTraditionalHWR = "yue_Hant-HWR@sw=HWR-Traditional"
+
+    /// Automatically generated value for software keyboard CantoneseTraditionalSUCHENG.
+    case CantoneseTraditionalSUCHENG = "yue_Hant-Sucheng@sw=Sucheng"
+
+    /// Automatically generated value for software keyboard CantoneseTraditionalWUBIHUA.
+    case CantoneseTraditionalWUBIHUA = "yue_Hant-Wubihua@sw=Wubihua-Traditional"
 
     /// Automatically generated value for software keyboard CatalanSpain.
     case CatalanSpain = "ca_ES@sw=QWERTY-Catalan"
 
+    /// Automatically generated value for software keyboard CentralKurdish.
+    case CentralKurdish = "ckb@sw=Kurdish-Sorani"
+
     /// Automatically generated value for software keyboard Cherokee.
     case Cherokee = "chr@sw=Cherokee"
 
-    /// Automatically generated value for software keyboard ChineseChina.
-    case ChineseChina = "zh_CN@sw=Pinyin-Simplified"
+    /// Automatically generated value for software keyboard ChineseChinamainland.
+    case ChineseChinamainland = "zh_CN@sw=Pinyin-Simplified"
 
     /// Automatically generated value for software keyboard ChineseSimplifiedHWR.
     case ChineseSimplifiedHWR = "zh_Hans-HWR@sw=HWR-Simplified"
@@ -75,6 +102,12 @@ public enum SoftwareKeyboard: String, LaunchArgumentValue {
     /// Automatically generated value for software keyboard DanishDenmark.
     case DanishDenmark = "da_DK@sw=QWERTY-Danish"
 
+    /// Automatically generated value for software keyboard Divehi.
+    case Divehi = "dv@sw=Dhivehi-QWERTY"
+
+    /// Automatically generated value for software keyboard DogriDevanagari.
+    case DogriDevanagari = "doi_Deva@sw=Devanagari-Hindi"
+
     /// Automatically generated value for software keyboard DutchBelgium.
     case DutchBelgium = "nl_BE@sw=AZERTY"
 
@@ -104,6 +137,9 @@ public enum SoftwareKeyboard: String, LaunchArgumentValue {
 
     /// Automatically generated value for software keyboard EstonianEstonia.
     case EstonianEstonia = "et_EE@sw=QWERTY"
+
+    /// Automatically generated value for software keyboard Faroese.
+    case Faroese = "fo@sw=QWERTY-Faroese"
 
     /// Automatically generated value for software keyboard FinnishFinland.
     case FinnishFinland = "fi_FI@sw=QWERTY-Swedish-Finnish"
@@ -180,8 +216,32 @@ public enum SoftwareKeyboard: String, LaunchArgumentValue {
     /// Automatically generated value for software keyboard Kannada.
     case Kannada = "kn@sw=Kannada"
 
+    /// Automatically generated value for software keyboard KashmiriArabic.
+    case KashmiriArabic = "ks_Arab@sw=Urdu"
+
+    /// Automatically generated value for software keyboard KashmiriDevanagari.
+    case KashmiriDevanagari = "ks_Deva@sw=Devanagari-Hindi"
+
+    /// Automatically generated value for software keyboard KazakhCyrillic.
+    case KazakhCyrillic = "kk_Cyrl@sw=Kazakh-Cyrillic"
+
+    /// Automatically generated value for software keyboard Khmer.
+    case Khmer = "km@sw=Khmer"
+
+    /// Automatically generated value for software keyboard KonkaniDevanagari.
+    case KonkaniDevanagari = "kok_Deva@sw=Devanagari-Marathi"
+
     /// Automatically generated value for software keyboard KoreanSouthKorea.
     case KoreanSouthKorea = "ko_KR@sw=Korean"
+
+    /// Automatically generated value for software keyboard KurdishLatin.
+    case KurdishLatin = "ku_Latn@sw=QWERTY-Kurdish-Kurmanji"
+
+    /// Automatically generated value for software keyboard KyrgyzCyrillic.
+    case KyrgyzCyrillic = "ky_Cyrl@sw=Russian"
+
+    /// Automatically generated value for software keyboard Lao.
+    case Lao = "lo@sw=Lao"
 
     /// Automatically generated value for software keyboard LatvianLatvia.
     case LatvianLatvia = "lv_LV@sw=QWERTY"
@@ -192,11 +252,26 @@ public enum SoftwareKeyboard: String, LaunchArgumentValue {
     /// Automatically generated value for software keyboard MacedonianMacedonia.
     case MacedonianMacedonia = "mk_MK@sw=Macedonian"
 
+    /// Automatically generated value for software keyboard Maithili.
+    case Maithili = "mai@sw=Devanagari-Hindi"
+
+    /// Automatically generated value for software keyboard MalayArabic.
+    case MalayArabic = "ms_Arab@sw=Jawi"
+
     /// Automatically generated value for software keyboard MalayMalaysia.
     case MalayMalaysia = "ms_MY@sw=QWERTY"
 
     /// Automatically generated value for software keyboard Malayalam.
     case Malayalam = "ml@sw=Malayalam"
+
+    /// Automatically generated value for software keyboard Maltese.
+    case Maltese = "mt@sw=QWERTY-Maltese"
+
+    /// Automatically generated value for software keyboard ManipuriBangla.
+    case ManipuriBangla = "mni_Beng@sw=Bengali"
+
+    /// Automatically generated value for software keyboard ManipuriMeiteiMayek.
+    case ManipuriMeiteiMayek = "mni_Mtei@sw=Manipuri-MeeteiMayek-QWERTY"
 
     /// Automatically generated value for software keyboard Maori.
     case Maori = "mi@sw=QWERTY"
@@ -204,8 +279,14 @@ public enum SoftwareKeyboard: String, LaunchArgumentValue {
     /// Automatically generated value for software keyboard Marathi.
     case Marathi = "mr@sw=Devanagari-Marathi"
 
+    /// Automatically generated value for software keyboard Mongolian.
+    case Mongolian = "mn@sw=Mongolian-Cyrillic"
+
     /// Automatically generated value for software keyboard NajdiArabic.
     case NajdiArabic = "ars@sw=Arabic"
+
+    /// Automatically generated value for software keyboard Nepali.
+    case Nepali = "ne@sw=Devanagari-Marathi"
 
     /// Automatically generated value for software keyboard NorwegianBokmålNorway.
     case NorwegianBokmålNorway = "nb_NO@sw=QWERTY-Norwegian"
@@ -213,8 +294,14 @@ public enum SoftwareKeyboard: String, LaunchArgumentValue {
     /// Automatically generated value for software keyboard Odia.
     case Odia = "or@sw=Oriya"
 
+    /// Automatically generated value for software keyboard Pashto.
+    case Pashto = "ps@sw=Pashto"
+
     /// Automatically generated value for software keyboard Persian.
     case Persian = "fa@sw=Persian"
+
+    /// Automatically generated value for software keyboard PersianAfghanistan.
+    case PersianAfghanistan = "fa_AF@sw=Persian"
 
     /// Automatically generated value for software keyboard PolishPoland.
     case PolishPoland = "pl_PL@sw=QWERTY"
@@ -234,11 +321,29 @@ public enum SoftwareKeyboard: String, LaunchArgumentValue {
     /// Automatically generated value for software keyboard RussianRussia.
     case RussianRussia = "ru_RU@sw=Russian"
 
+    /// Automatically generated value for software keyboard Sanskrit.
+    case Sanskrit = "sa@sw=Devanagari-Marathi"
+
+    /// Automatically generated value for software keyboard SantaliDevanagari.
+    case SantaliDevanagari = "sat_Deva@sw=Devanagari-Marathi"
+
+    /// Automatically generated value for software keyboard SantaliOlChiki.
+    case SantaliOlChiki = "sat_Olck@sw=Santali-OlChiki-QWERTY"
+
     /// Automatically generated value for software keyboard SerbianCyrillic.
     case SerbianCyrillic = "sr_Cyrl@sw=Serbian-Cyrillic"
 
     /// Automatically generated value for software keyboard SerbianLatin.
     case SerbianLatin = "sr_Latn@sw=QWERTY"
+
+    /// Automatically generated value for software keyboard Sindhi.
+    case Sindhi = "sd@sw=Sindhi"
+
+    /// Automatically generated value for software keyboard SindhiDevanagari.
+    case SindhiDevanagari = "sd_Deva@sw=Devanagari-Hindi"
+
+    /// Automatically generated value for software keyboard Sinhala.
+    case Sinhala = "si@sw=Sinhala"
 
     /// Automatically generated value for software keyboard SlovakSlovakia.
     case SlovakSlovakia = "sk_SK@sw=Czech-Slovak"
@@ -264,6 +369,9 @@ public enum SoftwareKeyboard: String, LaunchArgumentValue {
     /// Automatically generated value for software keyboard TagalogPhilippines.
     case TagalogPhilippines = "tl_PH@sw=QWERTY"
 
+    /// Automatically generated value for software keyboard TajikCyrillic.
+    case TajikCyrillic = "tg_Cyrl@sw=Tajik-Cyrillic"
+
     /// Automatically generated value for software keyboard Tamil.
     case Tamil = "ta@sw=Tamil"
 
@@ -276,14 +384,32 @@ public enum SoftwareKeyboard: String, LaunchArgumentValue {
     /// Automatically generated value for software keyboard Tibetan.
     case Tibetan = "bo@sw=Tibetan"
 
+    /// Automatically generated value for software keyboard Tongan.
+    case Tongan = "to@sw=QWERTY-Tongan"
+
     /// Automatically generated value for software keyboard TurkishTurkey.
     case TurkishTurkey = "tr_TR@sw=Turkish-Q"
+
+    /// Automatically generated value for software keyboard TurkmenLatin.
+    case TurkmenLatin = "tk_Latn@sw=Turkmen"
 
     /// Automatically generated value for software keyboard UkrainianUkraine.
     case UkrainianUkraine = "uk_UA@sw=Ukrainian"
 
     /// Automatically generated value for software keyboard Urdu.
     case Urdu = "ur@sw=Urdu"
+
+    /// Automatically generated value for software keyboard Uyghur.
+    case Uyghur = "ug@sw=Uyghur"
+
+    /// Automatically generated value for software keyboard UzbekArabic.
+    case UzbekArabic = "uz_Arab@sw=Uzbek-Arabic"
+
+    /// Automatically generated value for software keyboard UzbekCyrillic.
+    case UzbekCyrillic = "uz_Cyrl@sw=Uzbek-Cyrillic"
+
+    /// Automatically generated value for software keyboard UzbekLatin.
+    case UzbekLatin = "uz_Latn@sw=QWERTY"
 
     /// Automatically generated value for software keyboard VietnameseVietnam.
     case VietnameseVietnam = "vi_VN@sw=QWERTY"

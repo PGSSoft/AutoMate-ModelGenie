@@ -3,11 +3,17 @@
 /// Enumeration describing available hardware keyboards in the system.
 public enum HardwareKeyboard: String, LaunchArgumentValue {
 
+    /// Automatically generated value for hardware keyboard Albanian.
+    case Albanian = "sq@hw=Albanian"
+
     /// Automatically generated value for hardware keyboard Arabic.
     case Arabic = "ar@hw=Arabic"
 
     /// Automatically generated value for hardware keyboard Armenian.
     case Armenian = "hy@hw=Armenian-HM QWERTY"
+
+    /// Automatically generated value for hardware keyboard Assamese.
+    case Assamese = "as@hw=Assamese"
 
     /// Automatically generated value for hardware keyboard AzerbaijaniLatin.
     case AzerbaijaniLatin = "az_Latn@hw=Azeri"
@@ -18,17 +24,35 @@ public enum HardwareKeyboard: String, LaunchArgumentValue {
     /// Automatically generated value for hardware keyboard Belarusian.
     case Belarusian = "be@hw=Byelorussian"
 
+    /// Automatically generated value for hardware keyboard Bodo.
+    case Bodo = "brx@hw=Bodo"
+
     /// Automatically generated value for hardware keyboard BulgarianBulgaria.
     case BulgarianBulgaria = "bg_BG@hw=Bulgarian - Phonetic"
+
+    /// Automatically generated value for hardware keyboard Burmese.
+    case Burmese = "my@hw=Myanmar"
+
+    /// Automatically generated value for hardware keyboard CantoneseTraditionalCANGJIE.
+    case CantoneseTraditionalCANGJIE = "yue_Hant-Cangjie@hw=CangjieKeyboard"
+
+    /// Automatically generated value for hardware keyboard CantoneseTraditionalSUCHENG.
+    case CantoneseTraditionalSUCHENG = "yue_Hant-Sucheng@hw=CangjieKeyboard"
+
+    /// Automatically generated value for hardware keyboard CantoneseTraditionalWUBIHUA.
+    case CantoneseTraditionalWUBIHUA = "yue_Hant-Wubihua@hw=US"
 
     /// Automatically generated value for hardware keyboard CatalanSpain.
     case CatalanSpain = "ca_ES@hw=Spanish - ISO"
 
+    /// Automatically generated value for hardware keyboard CentralKurdish.
+    case CentralKurdish = "ckb@hw=Kurdish-Sorani"
+
     /// Automatically generated value for hardware keyboard Cherokee.
     case Cherokee = "chr@hw=Cherokee-Nation"
 
-    /// Automatically generated value for hardware keyboard ChineseChina.
-    case ChineseChina = "zh_CN@hw=US"
+    /// Automatically generated value for hardware keyboard ChineseChinamainland.
+    case ChineseChinamainland = "zh_CN@hw=US"
 
     /// Automatically generated value for hardware keyboard ChineseSimplifiedPinyinRomanization.
     case ChineseSimplifiedPinyinRomanization = "zh_Hans-Pinyin@hw=US"
@@ -69,6 +93,12 @@ public enum HardwareKeyboard: String, LaunchArgumentValue {
     /// Automatically generated value for hardware keyboard DanishDenmark.
     case DanishDenmark = "da_DK@hw=Danish"
 
+    /// Automatically generated value for hardware keyboard Divehi.
+    case Divehi = "dv@hw=Dhivehi-QWERTY"
+
+    /// Automatically generated value for hardware keyboard DogriDevanagari.
+    case DogriDevanagari = "doi_Deva@hw=Dogri"
+
     /// Automatically generated value for hardware keyboard DutchBelgium.
     case DutchBelgium = "nl_BE@hw=Belgian"
 
@@ -98,6 +128,9 @@ public enum HardwareKeyboard: String, LaunchArgumentValue {
 
     /// Automatically generated value for hardware keyboard EstonianEstonia.
     case EstonianEstonia = "et_EE@hw=Estonian"
+
+    /// Automatically generated value for hardware keyboard Faroese.
+    case Faroese = "fo@hw=Faroese"
 
     /// Automatically generated value for hardware keyboard FinnishFinland.
     case FinnishFinland = "fi_FI@hw=Finnish"
@@ -171,8 +204,32 @@ public enum HardwareKeyboard: String, LaunchArgumentValue {
     /// Automatically generated value for hardware keyboard Kannada.
     case Kannada = "kn@hw=Kannada"
 
+    /// Automatically generated value for hardware keyboard KashmiriArabic.
+    case KashmiriArabic = "ks_Arab@hw=Urdu"
+
+    /// Automatically generated value for hardware keyboard KashmiriDevanagari.
+    case KashmiriDevanagari = "ks_Deva@hw=Kashmiri"
+
+    /// Automatically generated value for hardware keyboard KazakhCyrillic.
+    case KazakhCyrillic = "kk_Cyrl@hw=Kazakh"
+
+    /// Automatically generated value for hardware keyboard Khmer.
+    case Khmer = "km@hw=Khmer"
+
+    /// Automatically generated value for hardware keyboard KonkaniDevanagari.
+    case KonkaniDevanagari = "kok_Deva@hw=Konkani"
+
     /// Automatically generated value for hardware keyboard KoreanSouthKorea.
     case KoreanSouthKorea = "ko_KR@hw=2SetHangul"
+
+    /// Automatically generated value for hardware keyboard KurdishLatin.
+    case KurdishLatin = "ku_Latn@hw=Kurdish-Kurmanji"
+
+    /// Automatically generated value for hardware keyboard KyrgyzCyrillic.
+    case KyrgyzCyrillic = "ky_Cyrl@hw=Kyrgyz-Cyrillic"
+
+    /// Automatically generated value for hardware keyboard Lao.
+    case Lao = "lo@hw=Lao"
 
     /// Automatically generated value for hardware keyboard LatvianLatvia.
     case LatvianLatvia = "lv_LV@hw=Latvian"
@@ -183,11 +240,26 @@ public enum HardwareKeyboard: String, LaunchArgumentValue {
     /// Automatically generated value for hardware keyboard MacedonianMacedonia.
     case MacedonianMacedonia = "mk_MK@hw=Macedonian"
 
+    /// Automatically generated value for hardware keyboard Maithili.
+    case Maithili = "mai@hw=Maithili"
+
+    /// Automatically generated value for hardware keyboard MalayArabic.
+    case MalayArabic = "ms_Arab@hw=Jawi"
+
     /// Automatically generated value for hardware keyboard MalayMalaysia.
     case MalayMalaysia = "ms_MY@hw=US"
 
     /// Automatically generated value for hardware keyboard Malayalam.
     case Malayalam = "ml@hw=Malayalam"
+
+    /// Automatically generated value for hardware keyboard Maltese.
+    case Maltese = "mt@hw=Maltese"
+
+    /// Automatically generated value for hardware keyboard ManipuriBangla.
+    case ManipuriBangla = "mni_Beng@hw=Manipuri-Bengali"
+
+    /// Automatically generated value for hardware keyboard ManipuriMeiteiMayek.
+    case ManipuriMeiteiMayek = "mni_Mtei@hw=Manipuri-MeeteiMayek"
 
     /// Automatically generated value for hardware keyboard Maori.
     case Maori = "mi@hw=Maori"
@@ -195,8 +267,14 @@ public enum HardwareKeyboard: String, LaunchArgumentValue {
     /// Automatically generated value for hardware keyboard Marathi.
     case Marathi = "mr@hw=Devanagari-QWERTY"
 
+    /// Automatically generated value for hardware keyboard Mongolian.
+    case Mongolian = "mn@hw=Mongolian-Cyrillic"
+
     /// Automatically generated value for hardware keyboard NajdiArabic.
     case NajdiArabic = "ars@hw=Arabic"
+
+    /// Automatically generated value for hardware keyboard Nepali.
+    case Nepali = "ne@hw=Nepali-IS16350"
 
     /// Automatically generated value for hardware keyboard NorwegianBokmålNorway.
     case NorwegianBokmålNorway = "nb_NO@hw=Norwegian"
@@ -204,8 +282,14 @@ public enum HardwareKeyboard: String, LaunchArgumentValue {
     /// Automatically generated value for hardware keyboard Odia.
     case Odia = "or@hw=Oriya"
 
+    /// Automatically generated value for hardware keyboard Pashto.
+    case Pashto = "ps@hw=Afghan Pashto"
+
     /// Automatically generated value for hardware keyboard Persian.
     case Persian = "fa@hw=Persian-ISIRI 2901"
+
+    /// Automatically generated value for hardware keyboard PersianAfghanistan.
+    case PersianAfghanistan = "fa_AF@hw=Afghan Dari"
 
     /// Automatically generated value for hardware keyboard PolishPoland.
     case PolishPoland = "pl_PL@hw=Polish Pro"
@@ -225,11 +309,29 @@ public enum HardwareKeyboard: String, LaunchArgumentValue {
     /// Automatically generated value for hardware keyboard RussianRussia.
     case RussianRussia = "ru_RU@hw=Russian"
 
+    /// Automatically generated value for hardware keyboard Sanskrit.
+    case Sanskrit = "sa@hw=Sanskrit"
+
+    /// Automatically generated value for hardware keyboard SantaliDevanagari.
+    case SantaliDevanagari = "sat_Deva@hw=Santali-Devanagari"
+
+    /// Automatically generated value for hardware keyboard SantaliOlChiki.
+    case SantaliOlChiki = "sat_Olck@hw=Santali-OlChiki"
+
     /// Automatically generated value for hardware keyboard SerbianCyrillic.
     case SerbianCyrillic = "sr_Cyrl@hw=Serbian"
 
     /// Automatically generated value for hardware keyboard SerbianLatin.
     case SerbianLatin = "sr_Latn@hw=Serbian-Latin"
+
+    /// Automatically generated value for hardware keyboard Sindhi.
+    case Sindhi = "sd@hw=Sindhi"
+
+    /// Automatically generated value for hardware keyboard SindhiDevanagari.
+    case SindhiDevanagari = "sd_Deva@hw=Sindhi-Devanagari"
+
+    /// Automatically generated value for hardware keyboard Sinhala.
+    case Sinhala = "si@hw=Sinhala"
 
     /// Automatically generated value for hardware keyboard SlovakSlovakia.
     case SlovakSlovakia = "sk_SK@hw=Slovak"
@@ -255,6 +357,9 @@ public enum HardwareKeyboard: String, LaunchArgumentValue {
     /// Automatically generated value for hardware keyboard TagalogPhilippines.
     case TagalogPhilippines = "tl_PH@hw=Spanish - ISO"
 
+    /// Automatically generated value for hardware keyboard TajikCyrillic.
+    case TajikCyrillic = "tg_Cyrl@hw=Tajik-Cyrillic"
+
     /// Automatically generated value for hardware keyboard Telugu.
     case Telugu = "te@hw=Telugu"
 
@@ -264,14 +369,32 @@ public enum HardwareKeyboard: String, LaunchArgumentValue {
     /// Automatically generated value for hardware keyboard Tibetan.
     case Tibetan = "bo@hw=Tibetan-QWERTY"
 
+    /// Automatically generated value for hardware keyboard Tongan.
+    case Tongan = "to@hw=Tongan"
+
     /// Automatically generated value for hardware keyboard TurkishTurkey.
     case TurkishTurkey = "tr_TR@hw=Turkish-QWERTY-PC"
+
+    /// Automatically generated value for hardware keyboard TurkmenLatin.
+    case TurkmenLatin = "tk_Latn@hw=Turkmen"
 
     /// Automatically generated value for hardware keyboard UkrainianUkraine.
     case UkrainianUkraine = "uk_UA@hw=Ukrainian"
 
     /// Automatically generated value for hardware keyboard Urdu.
     case Urdu = "ur@hw=Urdu"
+
+    /// Automatically generated value for hardware keyboard Uyghur.
+    case Uyghur = "ug@hw=Uyghur"
+
+    /// Automatically generated value for hardware keyboard UzbekArabic.
+    case UzbekArabic = "uz_Arab@hw=Afghan Uzbek"
+
+    /// Automatically generated value for hardware keyboard UzbekCyrillic.
+    case UzbekCyrillic = "uz_Cyrl@hw=Uzbek-Cyrillic"
+
+    /// Automatically generated value for hardware keyboard UzbekLatin.
+    case UzbekLatin = "uz_Latn@hw=US Extended"
 
     /// Automatically generated value for hardware keyboard VietnameseVietnam.
     case VietnameseVietnam = "vi_VN@hw=US"
