@@ -10,7 +10,7 @@ import Foundation
 
 // swiftlint:disable:next function_body_length
 func generateHealthAlerts() {
-    let healthKitPath = Configuration.developerDirectory + "/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/HealthUI.framework"
+    let healthKitPath = Configuration.developerDirectory + "/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/HealthUI.framework"
 
     /// Iterates recursively throught directory content
     // swiftlint:disable:next function_body_length cyclomatic_complexity
