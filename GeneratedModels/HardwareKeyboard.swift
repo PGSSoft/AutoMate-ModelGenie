@@ -360,6 +360,9 @@ public enum HardwareKeyboard: String, LaunchArgumentValue {
     /// Automatically generated value for hardware keyboard TajikCyrillic.
     case TajikCyrillic = "tg_Cyrl@hw=Tajik-Cyrillic"
 
+    /// Automatically generated value for hardware keyboard Tamil.
+    case Tamil = "ta@hw=US"
+
     /// Automatically generated value for hardware keyboard Telugu.
     case Telugu = "te@hw=Telugu"
 
