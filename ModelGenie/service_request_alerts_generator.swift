@@ -10,7 +10,7 @@ import Foundation
 
 // swiftlint:disable:next function_body_length
 func generateServiceRequestAlerts() {
-    let serviceAlertsPath = Configuration.developerDirectory + "/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/TCC.framework"
+    let serviceAlertsPath = Configuration.developerDirectory + "/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/TCC.framework"
 
     /// Iterates recursively throught directory content
     func findServices(servicesDictionary: inout NamedMessageCollection, optionsDictionary: inout NamedMessageCollection) {
@@ -26,6 +26,7 @@ func generateServiceRequestAlerts() {
                     .replacingOccurrences(of: "REQUEST_ACCESS_SERVICE_kTCCService", with: "")
                     .replacingOccurrences(of: "REQUEST_ACCESS_INFO_SERVICE_kTCCService", with: "")
                     .replacingOccurrences(of: "REQUEST_ACCESS_", with: "")
+                    .replacingOccurrences(of: "REQUEST_DEFAULT_PURPOSE_STRING_SERVICE_kTCCService", with: "DefaultPurpose")
                 let value = configuration.value.normalizedForLikeExpression
 
                 switch key {

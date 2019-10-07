@@ -3,7 +3,7 @@ import Foundation
 // swiftlint:disable cyclomatic_complexity
 // swiftlint:disable:next function_body_length
 func generateLocationAlerts() {
-    let coreLocationPath = Configuration.developerDirectory + "/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/Frameworks/CoreLocation.framework"
+    let coreLocationPath = Configuration.developerDirectory + "/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/Frameworks/CoreLocation.framework"
 
     /// Iterates recursively throught directory content
     func findServices(alertsDictionary: inout NamedMessageCollection, optionsDictionary: inout NamedMessageCollection) {
