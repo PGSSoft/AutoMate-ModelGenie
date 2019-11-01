@@ -37,7 +37,13 @@ func generateLocationAlerts() {
                 case "LOCATION_CLIENT_PERMISSION_ALWAYS_BUTTON":
                     key = "LocationAlwaysAlertAllow"
                     update(namedMessageCollection: &optionsDictionary, key: key, value: value)
+                case "LOCATION_CLIENT_PERMISSION_ONETIME_BUTTON":
+                    key = "LocationWhenInUseAlertAllowOneTime"
+                    update(namedMessageCollection: &optionsDictionary, key: key, value: value)
                 case "LOCATION_CLIENT_PERMISSION_WHENINUSE_BUTTON":
+                    key = "LocationWhenInUseAlertAllow"
+                    update(namedMessageCollection: &optionsDictionary, key: key, value: value)
+                case "LOCATION_CLIENT_PERMISSION_WHENINUSE_ONLY_BUTTON":
                     key = "LocationAlwaysAlertAllowWhenInUseOnly"
                     update(namedMessageCollection: &optionsDictionary, key: key, value: value)
                 default: ()
@@ -76,7 +82,9 @@ func generateLocationAlerts() {
                 case "LocationAlertOk": messagesKey = "ok"
                 case "LocationAlertCancel": messagesKey = "cancel"
                 case "LocationAlwaysAlertAllow": messagesKey = "allow"
-                case "LocationAlwaysAlertAllowWhenInUseOnly": messagesKey = "cancel"
+                case "LocationWhenInUseAlertAllow": messagesKey = "allow"
+                case "LocationWhenInUseAlertAllowOneTime": messagesKey = "allowOneTime"
+                case "LocationAlwaysAlertAllowWhenInUseOnly": messagesKey = "whenInUseOnly"
                 default: preconditionFailure("Not supported alert message key.")
                 }
 
@@ -101,6 +109,7 @@ func generateLocationAlerts() {
                 switch item.key {
                 case "LocationUpgradeWhenInUseAlwaysAlert": protocols = "LocationAlwaysAlertAllow, LocationAlwaysAlertAllowWhenInUseOnly"
                 case "LocationAlwaysAlert": protocols = "LocationAlwaysAlertAllow, LocationAlwaysAlertAllowWhenInUseOnly, LocationAlertDeny"
+                case "LocationWhenInUseAlert": protocols = "LocationWhenInUseAlertAllow, LocationWhenInUseAlertAllowOneTime, LocationAlertDeny"
                 default: protocols = "LocationAlertAllow, LocationAlertDeny"
                 }
 
