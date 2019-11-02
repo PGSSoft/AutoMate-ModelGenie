@@ -126,6 +126,13 @@ class Writer: CustomDebugStringConvertible {
         data.append(dataFromString)
     }
 
+    func append(_ multiline: String) {
+        guard let dataFromString = multiline.data(using: String.Encoding.utf8) else {
+            return
+        }
+        data.append(dataFromString)
+    }
+
     var debugDescription: String {
         guard let content = NSString(data: data as Data, encoding: String.Encoding.utf8.rawValue) as String? else {
             fatalError()

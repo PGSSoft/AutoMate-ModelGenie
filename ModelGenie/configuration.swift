@@ -26,5 +26,5 @@ struct Configuration {
     }()
 
     static let outputDirectory = "GeneratedModels"
-    static let iOSVersion = "12.2"
+    static let iOSVersion = "13.1"
 }

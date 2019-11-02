@@ -13,23 +13,29 @@ func generateLanguages() {
     let languagesDictionary = readStrings(fromPath: simulatorLanguagesPath)
 
     write(toFile: "SystemLanguage") { (writer) in
-        writer.append(line: sharedSwiftLintOptions)
-        writer.append(line: "")
-        writer.append(line: "/// Enumeration describing available languages in the system.")
-        writer.append(line: "public enum SystemLanguage: String, LaunchArgumentValue {")
 
-        writer.beginIndent()
+        writer.append(
+"""
+\(sharedSwiftLintOptions)
+
+/// Enumeration describing available languages in the system.
+public enum SystemLanguage: String, LaunchArgumentValue {
+"""
+        )
         for identifier in languagesDictionary.keys.sorted() {
             guard let displayName = locale.displayName(forKey: .identifier, value: identifier) else {
                 continue
             }
             let range = NSRange(location: 0, length: displayName.count)
             let caseName = expr.stringByReplacingMatches(in: displayName, options: [], range: range, withTemplate: "")
-            writer.append(line: "")
-            writer.append(line: "/// Automatically generated value for language \(caseName).")
-            writer.append(line: "case \(caseName) = \"\(identifier)\"")
+            writer.append(
+"""
+
+    /// Automatically generated value for language \(caseName).
+    case \(caseName) = \"\(identifier)\"
+"""
+            )
         }
-        writer.finishIndent()
 
         writer.append(line: "}")
     }

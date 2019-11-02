@@ -10,7 +10,7 @@ import Foundation
 
 // swiftlint:disable:next function_body_length
 func generateServiceRequestAlerts() {
-    let serviceAlertsPath = Configuration.developerDirectory + "/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/TCC.framework"
+    let serviceAlertsPath = Configuration.developerDirectory + "/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/TCC.framework"
 
     /// Iterates recursively throught directory content
     func findServices(servicesDictionary: inout NamedMessageCollection, optionsDictionary: inout NamedMessageCollection) {
@@ -26,6 +26,7 @@ func generateServiceRequestAlerts() {
                     .replacingOccurrences(of: "REQUEST_ACCESS_SERVICE_kTCCService", with: "")
                     .replacingOccurrences(of: "REQUEST_ACCESS_INFO_SERVICE_kTCCService", with: "")
                     .replacingOccurrences(of: "REQUEST_ACCESS_", with: "")
+                    .replacingOccurrences(of: "REQUEST_DEFAULT_PURPOSE_STRING_SERVICE_kTCCService", with: "DefaultPurpose")
                 let value = configuration.value.normalizedForLikeExpression
 
                 switch key {
@@ -58,11 +59,16 @@ func generateServiceRequestAlerts() {
 
     // Generate source code:
     write(toFile: "ServiceRequestAlerts") { (writer) in
-        writer.append(line: sharedSwiftLintOptions)
-        writer.append(line: "/// Represents possible system service messages and label values on buttons.")
-        writer.append(line: "")
-        writer.append(line: "import XCTest")
-        writer.append(line: "#if os(iOS)")
+        writer.append(
+"""
+\(sharedSwiftLintOptions)
+/// Represents possible system service messages and label values on buttons.
+
+import XCTest
+#if os(iOS)
+
+"""
+        )
 
         let createAlertOptions: (NamedMessageCollection) -> Void = { dictionary in
             for item in dictionary.sorted(by: { $0.key < $1.key }) {
@@ -73,78 +79,74 @@ func generateServiceRequestAlerts() {
                 default: preconditionFailure("Not supported alert message key.")
                 }
 
-                writer.append(line: "")
-                writer.append(line: "extension \(item.key) {")
-                writer.beginIndent()
-                writer.append(line: "")
-                writer.append(line: "/// Represents all possible \"\(messagesKey)\" buttons in system service messages.")
-                writer.append(line: "public static var \(messagesKey): [String] {")
-                writer.beginIndent()
-                writer.append(line: "return readMessages(from: \"\(item.key)\")")
-                writer.finishIndent()
-                writer.append(line: "}")
-                writer.finishIndent()
-                writer.append(line: "}")
+                writer.append(
+"""
+
+extension \(item.key) {
+
+    /// Represents all possible \"\(messagesKey)\" buttons in system service messages.
+    public static var \(messagesKey): [String] {
+        return readMessages(from: \"\(item.key)\")
+    }
+}
+
+"""
+                )
             }
         }
 
         let createAlerts: (NamedMessageCollection) -> Void = { dictionary in
             for item in dictionary.sorted(by: { $0.key < $1.key }) {
-                writer.append(line: "")
-                writer.append(line: "/// Represents `\(item.key)` service alert.")
-                writer.append(line: "///")
-                writer.append(line: "/// System alert supposed to be used in the handler of the `XCTestCase.addUIInterruptionMonitor(withDescription:handler:)` method.")
-                writer.append(line: "///")
-                writer.append(line: "/// **Example:**")
-                writer.append(line: "///")
-                writer.append(line: "/// ```swift")
-                writer.append(line: "/// let token = addUIInterruptionMonitor(withDescription: \"Alert\") { (alert) -> Bool in")
-                writer.append(line: "///     guard let alert = \(item.key)(element: alert) else {")
-                writer.append(line: "///         XCTFail(\"Cannot create \(item.key) object\")")
-                writer.append(line: "///         return false")
-                writer.append(line: "///     }")
-                writer.append(line: "///")
-                writer.append(line: "///     alert.denyElement.tap()")
-                writer.append(line: "///     return true")
-                writer.append(line: "/// }")
-                writer.append(line: "///")
-                writer.append(line: "/// mainPage.goToPermissionsPageMenu()")
-                writer.append(line: "/// // Interruption won't happen without some kind of action.")
-                writer.append(line: "/// app.tap()")
-                writer.append(line: "/// removeUIInterruptionMonitor(token)")
-                writer.append(line: "/// ```")
-                writer.append(line: "///")
-                writer.append(line: "/// - note:")
-                writer.append(line: "/// Handlers should return `true` if they handled the UI, `false` if they did not.")
-                writer.append(line: "public struct \(item.key): SystemAlert, SystemAlertAllow, SystemAlertDeny {")
-                writer.beginIndent()
-                writer.append(line: "")
-                writer.append(line: "/// Represents all possible messages in `\(item.key)` service alert.")
-                writer.append(line: "public static let messages = readMessages()")
-                writer.finishIndent()
-                writer.beginIndent()
-                writer.append(line: "")
-                writer.append(line: "/// System service alert element.")
-                writer.append(line: "public var alert: XCUIElement")
-                writer.finishIndent()
-                writer.append(line: "")
-                writer.beginIndent()
-                writer.append(line: "/// Initialize `\(item.key)` with alert element.")
-                writer.append(line: "///")
-                writer.append(line: "/// - Parameter element: An alert element.")
-                writer.append(line: "public init?(element: XCUIElement) {")
-                writer.beginIndent()
-                writer.append(line: "guard element.staticTexts.elements(withLabelsLike: type(of: self).messages).first != nil else {")
-                writer.beginIndent()
-                writer.append(line: "return nil")
-                writer.finishIndent()
-                writer.append(line: "}")
-                writer.append(line: "")
-                writer.append(line: "self.alert = element")
-                writer.finishIndent()
-                writer.append(line: "}")
-                writer.finishIndent()
-                writer.append(line: "}")
+                writer.append(
+"""
+
+/// Represents `\(item.key)` service alert.
+///
+/// System alert supposed to be used in the handler of the `XCTestCase.addUIInterruptionMonitor(withDescription:handler:)` method.
+///
+/// **Example:**
+///
+/// ```swift
+/// let token = addUIInterruptionMonitor(withDescription: \"Alert\") { (alert) -> Bool in
+///     guard let alert = \(item.key)(element: alert) else {
+///         XCTFail(\"Cannot create \(item.key) object\")
+///         return false
+///     }
+///
+///     alert.denyElement.tap()
+///     return true
+/// }
+///
+/// mainPage.goToPermissionsPageMenu()
+/// // Interruption won't happen without some kind of action.
+/// app.tap()
+/// removeUIInterruptionMonitor(token)
+/// ```
+///
+/// - note:
+/// Handlers should return `true` if they handled the UI, `false` if they did not.
+public struct \(item.key): SystemAlert, SystemAlertAllow, SystemAlertDeny {
+
+    /// Represents all possible messages in `\(item.key)` service alert.
+    public static let messages = readMessages()
+
+    /// System service alert element.
+    public var alert: XCUIElement
+
+    /// Initialize `\(item.key)` with alert element.
+    ///
+    /// - Parameter element: An alert element.
+    public init?(element: XCUIElement) {
+        guard element.staticTexts.elements(withLabelsLike: type(of: self).messages).first != nil else {
+            return nil
+        }
+
+        self.alert = element
+    }
+}
+
+"""
+                )
             }
         }
 

@@ -10,7 +10,7 @@ func getKeyboards() -> [KeyboardData] {
 
     let enUSLocale = NSLocale(localeIdentifier: "en_US")
 
-    let simulatorKeyboardsPath = Configuration.developerDirectory + "/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/TextInput/"
+    let simulatorKeyboardsPath = Configuration.developerDirectory + "/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/TextInput/"
 
     guard let content = try? fileManager.contentsOfDirectory(atPath: simulatorKeyboardsPath) else {
         preconditionFailure("Couldn't find directory")
@@ -45,19 +45,27 @@ func getKeyboards() -> [KeyboardData] {
 
 func writeKeyboardEnum(to name: String, variant: String, cases: [NameAndValue]) {
     write(toFile: name) { (writer) in
-        writer.append(line: sharedSwiftLintOptions)
-        writer.append(line: "")
-        writer.append(line: "/// Enumeration describing available \(variant) keyboards in the system.")
-        writer.append(line: "public enum \(name): String, LaunchArgumentValue {")
+        writer.append(
+"""
+\(sharedSwiftLintOptions)
 
-        writer.beginIndent()
+/// Enumeration describing available \(variant) keyboards in the system.
+public enum \(name): String, LaunchArgumentValue {
+
+"""
+        )
+
         for (name, value) in cases {
-            writer.append(line: "")
             let caseName = asIdentifier(name)
-            writer.append(line: "/// Automatically generated value for \(variant) keyboard \(caseName).")
-            writer.append(line: "case \(caseName) = \"\(value)\"")
+            writer.append(
+"""
+
+    /// Automatically generated value for \(variant) keyboard \(caseName).
+    case \(caseName) = "\(value)"
+
+"""
+            )
         }
-        writer.finishIndent()
 
         writer.append(line: "}")
     }
